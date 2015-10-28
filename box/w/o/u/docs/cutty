@@ -1,0 +1,52 @@
+
+
+
+makePath = function(ctx){
+
+CLR(ctx);
+
+
+var start = VX.shift();
+    ctx.moveTo(start.x, start.y);
+    _.each(VX, function(vertex, index, list){
+        ctx.lineTo(vertex.x,vertex.y)});
+        ctx.fill(); ctx.closePath();ctx.clip();
+        imgCan(ctx, src)
+
+}
+
+
+            mixin ctx('ctx',650,650,'black')
+            mixin ctx('clr',50,50,'yellow')
+            mixin ctx('cut',50,50,'blue')
+            script.
+                src = pathToSrc(src);
+                imgCan(ctx, src);
+                vertex();
+                $(ctx.canvas).click(function(e){addVertex(ctx,  ctx.mx(e.clientX), ctx.my(e.clientY))})
+
+
+    a.p('/cutty', MW.lU, function(q,p,n){l('cty.p');
+
+
+        d(q.files);
+
+       l('path::::'); l(q.files.cutout.path);
+
+
+       // fs.rename(path, path + '.png', function (err){ p.d('/cutty')});
+
+        fs.readFile(q.files.cutout.path, function (err, data) {  d(q.files.cutout);
+
+            var newPath = q.files.cutout.path + '.png'; l(newPath);
+            fs.writeFile(newPath, data, function (err) { p.redirect("back"); });});
+
+
+    })
+
+
+
+
+
+
+

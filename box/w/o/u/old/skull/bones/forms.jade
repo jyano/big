@@ -1,0 +1,44 @@
+mixin imageUploadForm(action, msg)
+    if (msg)
+        p #{msg}
+    form(action="#{action}", method="post", enctype="multipart/form-data")
+        input(type="file", name="image")
+        mixin submit
+
+
+mixin form (title, items, action)
+
+    form.well(action='#{action}', method="POST")
+        h2 #{title}
+        - each item in items
+            p #{item}:
+            input(type='text', name='#{item}')
+        br
+        input(type='submit', value='submit')
+
+mixin userItemForm (item)
+
+    form.well(action='#{cP}/#{item}/po', method="POST")
+        h2 Enter a new #{item}:
+        - each value in fields[item]
+
+            p #{value}
+            input(type='text', name='#{value}')
+            input(type='hidden', name='username', value=#{u})
+        br
+        br
+        input(type='submit', value='submit')
+
+
+mixin buts(butArray, po, pre, po2)
+    if pre
+        br
+    each but in butArray
+        button(id='#{but}') #{but}
+        if po
+            br
+        if po2
+            br
+
+mixin submit
+    input(type='submit', value='submit')

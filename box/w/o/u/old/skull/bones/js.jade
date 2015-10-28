@@ -1,0 +1,63 @@
+mixin ev(code)
+    script.
+        eval("#{code}")
+mixin please(str)
+    script.
+        #{str}
+mixin J(str)
+    script.
+        #{str}
+mixin pleaseTest
+    mixin please("alert('please works')")
+mixin runner(arr)
+    each fn in arr
+        script.
+            #{fn}()
+
+mixin func(name, def, pam)
+    if pam
+        script.
+            var #{name} = function(#{def}){#{pam}}
+    else
+        script.
+            var #{name} = function(){#{def}}
+mixin local(def, name)
+    mixin J("var " + name + " = function(a,b,c,d,e){" + def + "}}  ")
+mixin f(def, name)
+    script.
+        #{name} = function(a,b,c,d,e){#{def}}
+mixin ff(a,b,c)
+    script.
+        #{a} = function(){#{b}();#{c}()}
+
+mixin set(k,v, noStringsAttached)
+    if (noStringsAttached)
+        script.
+            var #{k} = #{v}
+    else
+        script.
+            var #{k} = "#{v}"
+
+mixin monad(arr, initNum)
+    if initNum
+        script.
+            var x = #{initNum};
+        each fn in arr
+            script.
+                x = #{fn}(x)
+        script.
+            alert(x)
+    else
+        each fn in arr
+            script.
+                #{fn}()
+
+
+mixin alrt(str)
+    mixin J(" alert('" + str + "')  ")
+mixin doh(str)
+    script.
+        alert("#{str} !!!");
+mixin l(str)
+    script.
+        console.log('#{str}');

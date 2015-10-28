@@ -1,0 +1,29 @@
+extends ../../skull
+
+block append scripts
+    style.
+            body {
+                font-family: Verdana;
+                font-size: 13px;
+                background: 'pink';
+            }
+            .dark { background-color: #464646 }
+
+            h1, h2, h3 { font-size: 30px; color: #464646; }
+            h2 { font-size: 18px; }
+            h3 { font-size: 14px; }
+
+            a { color: #C2575B; text-decoration: none; }
+            a:hover { color: 'pink' }
+            .row {margin-bottom: 10px}
+
+block face
+    body
+        .container
+            .row
+                .col-md-2
+                    h1 hello from row 1
+                    a(href = '#') link from row 1 (above cols)
+                .col-md-10
+                    h1 hello from row 2
+                    a(href = '#') link from row 2

@@ -1,0 +1,35 @@
+mixin j(src)
+    script(src="#{src}.js")
+
+
+
+mixin js(arr)
+    - each src in arr
+        mixin j(src)
+
+
+
+
+
+
+
+mixin well(item)
+    .well #{item}
+
+
+mixin bb
+    br
+    br
+
+mixin bbb
+    br
+    br
+    br
+
+mixin pars(p)
+    each p in arr
+        p #{p}
+
+
+mixin title(t)
+    h1.text-center #{t}

@@ -1,0 +1,217 @@
+extends ../views/lib/object
+
+block c
+    h6 c!
+    h3 api
+
+
+
+    h5 ( tt ) rue | ( ff ) alse | ( $w ) indow |  _$ ~ alert   | $j ~ eval | $t ~ type of *
+
+
+
+
+    h3 ~loggy~
+    h4 $c
+    h6 window.console
+    h4 ll ~ $c.l
+    h6 console.log
+    h4 $log
+    h6 applies console.log
+    h4 dd ~ $c.d
+    h6 console.dir
+    h6 dep: [[[$log ( x ) : $l ( x )]]] and [[[$dir ( x ) : $d ( x )]]]
+    h4 $dir
+    h6 applies console.dir
+    h4 $v() , [[ $O._v( ) <- $v ( * ) ]]
+    h6 ultimate data display ( uses : log , dir , toString ) ( returns : nada )
+    h4 $$(v,d) ~ displaySetReturn
+    h6 [[[ v._v( ) ]]][[[ _d ( $w [ d ] ) = v ]]][[[ <- v ]]]
+    h6 ??: '_d ( * ) ' :  if ( d ) { * }
+    h5 competition:
+    h6 - logEvalRet ( s ) - - - l ( s ) ; return $j ( s )
+
+    h6  - setVarToFnRes ( s f ) - - - logEvalRet ((( s + " = " + f + " ( ' " + s + " ' ) "  )))
+
+
+    h1 DATA TYPES / PROTOTYPES
+    h2 $o
+    h4 <- [[[new Object ( a b c . . ) ]]]
+    h2 $O
+    h4 Object's prototype (object)
+    h5 also: a/A --- f/F ---    s/S --         n/N
+    h3 $O has many pops/mets
+    h4 _c
+    h5 * constructor
+    h4 _n
+    h5 * constructor.name
+    h4  _p
+    h5 * constructor.prototype;
+    h4 h$
+    h5
+    h5 <----[[[( n in * )]]] ( has )
+    h4 ho$
+    h5 * has 'own' pop
+    h4 hi$ ( n )
+    h5 <---[[[[  n in * ---AND---- * dont have 'own' n  ]]]
+    h6  has ( by inheritence (not 'own') )
+    h4 io$ ( o )
+    h5 <---( * instance of o )
+    h4 oi$ ( o )
+    h5 <---(o instance of * }  ( 'of instance ' vs ' instance of ' ) :)
+    h6 NOTE: 'instanceof' op and 'constructor' pop - always assume the constructor being queried is global - (unless indicated otherwise)
+    h4 po$ ( o )
+    h5 <---[[[ * is prototype of o? ]]]
+    h4 op$ ( o )
+    h5 <---[[[ is o prototype of * ? ]]]
+    h4 en$
+    h5 * property is ' enumerable '
+    h4 w / uw
+    h5 $ * watch / * unwatch
+    br
+    h4 _$$ ( d )
+    h5 $$ ( this , d )
+    br
+    h4 T
+    h6 <---[ type of * ]
+    h4 ( $O._ ) t
+    h6 " object "
+    h6 also : $A._t = array ( function number string )
+    h4 $O.t$
+    h5 " O "
+    h5 also : $A.t$ = " A " ( $F.t$ ( $N  $S  ) )
+    h4 t_ ( s )
+    h5 <---( * .t$ = = s )
+    h4 _O
+    h5 <---( * t_ ( " O " )  )
+    h5 also: _A _F _N _S
+
+
+
+
+    h1 FUNK
+    h4 $O._d ( )
+    h5 $d ( this )
+    h6 return this
+    h6 also: $F._d  $A  $S
+    h6 $F ( J )
+    h6 <=[[[ new-F('a 'b 'c 'd 'e 'f 'g 'h 'i  J ) ]]]
+    h4 $R ( r )
+    h6 <= [[[ ( "return (" + r + ")" ) } ]]] / J ~ code block
+    h4 $f ( J )
+    h6 <---[[[ $F ( $R ( J ) ) ]]]
+    h4 Fn ( $$ )
+    h6 if ( $$._S ( ) )
+    h5 $c.l ( 'f' )
+    h5 $$ = $F ( $$ )
+    h5 return $$
+    h6 else
+    h5 $$._v ( )
+    h4 $O.__o ( J K )
+    h5  if ( this._O ( ) )
+    h6 then  Fn( J ( this )
+    h5 else
+    h6 if ( K ) , then : Fn ( K ( this )
+    h5 also: __a __f __n __s
+    h6 example :  alert.__f ( " alert( 3 ) " ,  " alert ( 4 ) " )    <- this works!
+    h6 NOTE : Fn uses F, not f
+
+
+
+
+
+    h3 Iteration
+    h4 $x ( f  n )
+    h5 execs f ( n# of times )
+    h6 can curry the fn
+    h6 <- [[[ ( n ) -> do this n times: f () ]]]
+    h3 $ea
+    h6 _.each
+    h3 $e ( a J )
+    h5 $ea ( a  Fn( J ) )
+    h3 $mp
+    h6 _.map
+    h3 $M ( a J )
+    h6 $mp ( a  $f( J ) )
+    h3 $m ( a J )
+    h6 <- [[[ $mp ( a  Fn(J) ) ]]]
+    h6 runs J through Fn, then returns a mapping of it with a
+    h3 $n ( a  s )
+    h5 var f = new F( 'v 'k 'l "l [ k ] = " + s )
+    h5   <- [ [ $mp ( a , f ) ] ]
+    h3 $o ( a s )
+    h5 var f = new-F( 'v 'k 'l  " v = v " + s )
+    h5 $mp ( a , f )
+    h3 $mm
+    h6 $f ( $R( "$mp (a, $f ( $r_( b ) ) )") )
+    h3 $mShort ( a s )
+    h6 returns mapping of a, over new F("v","k","l","v=v"+s )
+    h3 $mChange ( a s )
+    h5 a will be mapped over: $F'   c[b]="+s   ')
+
+
+    h1 UTILS
+    h3 xX()
+    h6 if undefined
+    h4 returns 0
+    h6 otherwise
+    h4 <--( 1 )
+    br
+    h3 $xe ( w e i )
+    h5 if xX ( w )
+    h6 eval i
+    h5 else
+    h6 eval e
+    h3 $xi ( w i e )
+    h4 same but different
+    br
+    h3 $ifExists ( w i )
+    h5 only if xX false (it IS defined) ?
+    h6 then, do statement.
+    h5 and if not-x(w) ?
+    h6 then..
+    h6 y ( i )
+    br
+    h3 df ( x v )
+    h5 [ x's type defined?  ]
+    h6 then x.
+    h5 and if its not?
+    h6 then v.
+    h5 goodgirl, now 'return' to your sissy cage :)
+    h3 $g ( )
+    h5 not undefined AND not false ?
+    h3 $set ( k v o )
+    h5 [[[[[[[ o [ k ] = v ]]]]]]]
+    h6 dep by $$ ?
+    h3 $tr
+    h5 trims a string (duh)
+
+
+    h1 MOCKS
+    h2 $T holds some sample data (which get polluted)
+    br
+    h2 sss
+    h4 "hey sissy, we're going to the mall.. get dressed.. NOW."
+    br
+    h2 aaa
+    h4 [
+    h6 'good girl
+    h6 'slut
+    h6 69
+    h6 lips: 'SLUT-RED, nails: 'SISSY-PINK
+    h4 ]
+    br
+    h2 ooo
+    h4 {
+    h6 sissy  : ' for life '
+    h6 lulu: [ 9 ,' orgasm control ' ]
+    h4}
+    br
+    h2 fff ( n )
+    h5 if ( not n )
+    h6 $c.l  HOW MANY HITS , SLAVE ?
+    h5 else if ( n < 100 )
+    h6 $c.l not enough, princess bitch!
+    h5 else
+    h6 $c.l better..
+

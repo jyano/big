@@ -1,0 +1,64 @@
+extends ../../layout
+block content
+
+
+
+    // HEADER
+
+    h3.row
+        a(href='/teachy') teachy
+        span  &nbsp - &nbsp
+            a(href='/teachy/' + book.title) #{book.title} &nbsp
+            span - &nbsp#{bookPage.name}
+
+
+
+
+
+
+
+
+    .row
+        // LEFT
+        .col-md-3.well: h4
+            p new section:
+                form(method='post', action='/teachy/section/po')
+                    input.input-small(name = 'heading', type = 'text',placeholder='heading (optional)')
+                    input(name = 'content', type = 'text',placeholder='content')
+                    input(name = 'bookId', type = 'hidden', value = book._id)
+                    input(name = 'pageId', type = 'hidden', value = bookPage._id)
+                    br
+                    button.btn.btn-success(type = 'submit') ++
+
+            h5.well
+                p.lead pages
+                each page in book.pages
+                    p #{page.name}
+
+            .well
+
+                p.lead books
+                each book in books
+                    p
+
+                        a(href='/teachy/' + book.title) #{book.title}
+
+            h6.well
+                .row:.col-md-12
+                    p.lead json object
+                    p #{bookPage}
+
+        // MIDDLE
+        .col-md-7
+            .page
+                each section in bookPage.sections
+                    .well
+                        .row
+                            .col-md-8
+                                p.lead #{section.heading}
+                                p #{section.content}
+                            .col-md-3
+                                form(method = 'post', action = '/teachy/section/del')
+                                    input(type='hidden', name = section)
+                                    button(href ='/teachy/section/del') x
+

@@ -1,0 +1,47 @@
+extend ../layout
+block content
+    .container-fluid
+        div
+            br
+            br
+            br
+            .row
+                .col-md-1.text-center
+                    img(src="me.png").img-responsive.img-circle
+                    h5 #{u}
+                .col-md-2
+                    h4 Welcome to cappy/snappy!
+                    h5 a place to upload, organize and play with your pictures
+                .col-md-5
+                    h4
+                        mixin picUploadForm
+                .col-md-4
+                    if (msgs.length > 0)
+                        h6.alert.alert-danger
+                            each msg in msgs
+                                p &nbsp #{msg}
+                    br
+            .row
+                if (imgs)
+                    .col-md-2: h5
+                        each img in imgs
+                            a(href='#') name
+                            a(href='#{img.path}') full-size &nbsp&nbsp
+                            img(src = '/#{img.relPath}', height=170, width=170)
+                            span &nbsp
+
+                                //a(href='#{'/cappy/' + img.path}') edit &nbsp&nbsp
+                                //a(href='#{'/cutty/' + img.path}') cutty &nbsp&nbsp
+                                //a(href='#{SRC}') delete
+
+
+
+
+                                //- var cpySRC = '/cappy/' + img.path
+                                //- var ctySRC = '/cutty/' + img.path
+
+
+
+
+
+

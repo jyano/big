@@ -1,0 +1,90 @@
+mixin well(i)
+    .well #{i}
+mixin title(t)
+    h1.text-center #{t}
+
+mixin notice(n)
+    div.well
+        h1 notice:
+        p #{n}
+        +sin('poster')
+
+mixin dating(n,f,p)
+    h3 Welcome to the landing page for #{n} !
+    div.jumbotron
+        p Welcome to the new dating site called #{n}!
+        p Here we specialize on matching people who share a love of #{f}.
+        p On #{n}, you don't need to hope that people like #{f}, you know they do!
+        p If not, then they are a damn #{p}!
+        button.btn-large If you don't click here, you are a real #{p}-head!!
+    mixin welcome(n,f)
+        h3 Welcome to #{n}!
+        div.jumbotron
+            p This is the place to be if you are #{f}. Enjoy!
+    mixin lonely
+        +welcome('single-user chat-room (maximum users per chat: 1)','lonely but want to pretend you have a friend')
+
+mixin blah
+    a.btn.btn-primary.btn-large(data-toggle='modal',href='#popbox') make godzilla kill the other guys
+        +pop
+        input.popt
+        input.popb
+        button.pop send instant message bomb
+
+
+mixin prettyDate(uglyDate)
+    daysAgo = ((((new Date() - uglyDate) / 1000) / 60) / 60) / 24
+    hours = uglyDate.getHours()
+    minutes = uglyDate.getMinutes()
+    ampm = hours >= 12 ? 'pm' : 'am'
+    hours = hours % 12
+    hours = hours ? hours : 12
+    minutes = minutes < 10 ? '0'+minutes : minutes
+    strTime = hours + ':' + minutes + ' ' + ampm
+    if daysAgo < 1
+        | Today at #{strTime}
+    else if daysAgo <= 7
+        weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        day = uglyDate.getDay()
+        #{weekDays[day + 1]} at #{strTime}
+    else
+        #{uglyDate.getMonth() + 1}/#{uglyDate.getDate()}/#{uglyDate.getFullYear()}
+
+mixin showJson(myJsonObject, level)
+    if typeof level == 'undefined'
+        - var level = 0
+    - level++
+    .well(style='background-color:white')
+        .badge(style='width:1em;text-align:center;background-color:#cccccc').pull-center #{level}
+        unless typeof myJsonObject == 'undefined'
+            each value, key in myJsonObject
+                if value instanceof Array
+                    p #{key}: (Array[#{value.length}])
+                        if value.length == 0
+                            | &nbsp;(empty)
+                        else
+                            .well(style='background-color:white')
+                                each aValue, aIndex  in value
+                                    p [#{aIndex}]:
+                                        if typeof aValue == 'undefined'
+                                            | &nbsp;(empty)
+                                        else if aValue instanceof Date
+                                            mixin prettyDate(aValue)
+                                        else if aValue instanceof Object
+                                            | (Object)
+                                            mixin showJson(aValue, level)
+                                        else
+                                            #{aValue}
+
+                else if value instanceof Date
+                    p #{key}:&nbsp;
+                        mixin prettyDate(value)
+                else if value instanceof Object
+                    p #{key}:
+                    if typeof value == 'undefined' || value.length == 0
+                        | &nbsp;(empty)
+                    else
+                        mixin showJson(value, level)
+                else
+                    p #{key}: #{value}
+

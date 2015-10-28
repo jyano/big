@@ -1,0 +1,30 @@
+extends ../../layout
+block content
+
+
+
+
+    h1.row
+        .col-md-12
+            .text-center t e a c h y
+
+
+
+
+
+    .row
+        .col-md-6
+            //                       new book
+            .well
+                form.h3(method=false, action=false)
+                    input#mit(name = 'topic', type = 'text', placeholder='new book')
+                    button#sub(type = 'submit') ;)
+
+
+            //                       list of books
+            h1 books:
+            each book in books
+                form(method='POST', action = '/teachy/book/del/#{book.title}')
+                    input(type='hidden', name='hello', value='hello')
+                    button(type = 'submit') x
+                    a.h3(href='/teachy/' + book.title) &nbsp #{book.title}

@@ -1,0 +1,249 @@
+
+
+<head>
+
+<link rel="stylesheet" href="/p/d/css/bootstrap.css">
+<link rel="stylesheet" href="/p/d/css/bootstrap-themes.css">
+<script src="/p/d/js/jq.js"></script>
+<script src="/p/d/js/bs.js"></script>
+<script src="/p/d/js/us.js"></script>
+<script src="/p/d/js/bb.js"></script>
+<script src="/p/d/js/bbmn.js"></script>
+
+</head>
+
+<body><br><br><br><br><h1>Dirtpage</h1>
+
+<script id="template-message" type="text/template">
+
+  <div class="message">
+      <h2><%-topic%> </h2>
+      <a href="#"><%-message%></a><br>
+   
+      <button class="delete">Delete</button>
+  </div>
+
+</script>
+
+
+
+
+<div id="display">
+
+    <div class="controls">
+
+        <button class="add">Add New Message</button>
+
+        <form method="" action="" style="display:none;">
+
+            <input type="text" placeholder="topic" class="topic"><br>
+            <input type="text" placeholder="message" class="message"><br>
+
+            <input type="submit" value="Save Message">
+        </form>
+
+    </div>
+
+
+    <div class="listing">
+        <p>error</p>
+    </div>
+
+
+</div>
+
+
+
+
+<script>
+
+
+    App={
+        Models:{}, Collections:{},Views:{}, Routers:{},
+        Contacts:null,
+        Directory:null,
+        Browser:null
+    }
+
+
+    App.Routers.Contact=Backbone.Router.extend({
+
+        routes:{
+            'messages':'messages',
+            'messages/add':'messagesAdd',
+            'messages/remove/:id':'messagesRemove'},
+
+        messages:function(){
+            App.Directory.render()
+            App.Directory.addFormHide()},
+
+        messagesAdd:function(){
+            App.Directory.addForm()},
+
+        messagesRemove: function(id){
+
+            var msg=App.Messages.get(id)
+            if(msg){msg.destroy()}
+
+
+            App.Directory.addFormHide()
+        }
+
+    })
+
+    
+
+
+
+    App.Models.Message=Backbone.Model.extend({
+
+        defaults:{
+            topic:'none',
+            message:'none',
+            score:0},
+
+        validate:function(attrs, ops){
+            if(!attrs.topic){
+                return 'valid message must have a topic'}},
+
+        initialize:function(attrs){
+            var topic=attrs.topic||'<EMPTY>'
+            var message=attrs.message||'<EMPTY>'
+            console.log("initing a new contact model for '"+topic +" "+message +"'.")}
+    })
+
+
+
+
+    App.Collections.Message=Backbone.Collection.extend({model:App.Models.Message, url:'/messages'})
+
+    App.Views.Message=Backbone.View.extend({
+
+        initialize: function(ops){
+            this.$container=ops.$container
+            this.insert()
+            this.listenTo(this.model, 'change', this.render)},
+
+
+
+        template: _.template($('#template-message').html()),
+
+
+        $container:null,
+
+
+        render:function(){
+            this.$el.html(this.template(
+                    this.model.attributes
+            ))
+            return this},
+
+
+        insert:function(){this.$container.append(this.$el)},
+
+        events:{'click .delete':'remove'},
+
+        remove:function(){
+            App.Browser.navigate('messages/remove/'+this.model.get('id') )
+            this.model.destroy()}})
+
+
+
+    App.Views.Directory=Backbone.View.extend({
+
+        render:function(){
+            var $container=this.$('.listing').empty()
+
+            App.Messages.each(function(message){
+
+                        new App.Views.Message({
+                            model: message,
+                            $container: $container}).render()})
+
+            return this},
+
+        events:{
+            'click .controls .add': 'addForm',
+            'submit .controls form': 'addSubmit'
+        },
+
+        addForm:function(){
+
+            App.Browser.navigate('messages/add')
+
+            this.$('.controls form').show().find('input.topic').focus()
+        },
+
+        addFormHide:function(){
+            App.Browser.navigate('contacts')
+            this.$('.controls form').hide()
+        },
+
+        addSubmit:function(event){
+
+            event.preventDefault()
+
+            var $form=this.$('.controls form')
+
+            var newMessage=new App.Models.Message({
+
+                topic:$('input.topic', $form).val(),
+                message:$('input.message', $form).val()            })
+
+
+            if(newMessage.isValid()){
+
+                App.Messages.add(newMessage)
+
+                newMessage.save({}, { success: function(){$l('success')} })
+
+                this.addFormHide()
+
+                $('input[type=text]', $form).val('').blur()}
+
+            else {alert(newMessage.validationError)}
+        }
+
+
+    })
+
+
+
+
+
+    $(function(){
+
+        App.Messages=new App.Collections.Message()
+
+        console.log('App.Messages created')
+
+        App.Directory=new App.Views.Directory({el: $('#display') })
+
+                console.log('App.Directory created')
+
+                App.Directory.render()
+
+        App.Messages.on('add remove', function(){
+
+            App.Directory.render()})
+
+        App.Browser=new App.Routers.Contact
+
+        Backbone.history.start()
+
+        App.Messages.fetch()
+
+
+
+
+            })
+
+
+
+
+
+</script>
+    
+
+</body>
+

@@ -1,0 +1,60 @@
+<html>
+<head>
+
+<script src="/hb.js"></script>
+<script src="/jq.js"></script>
+
+</head>
+
+
+<body>
+
+<script id="template" type="text/x-handlebars-template">
+
+    <li>
+        <h2>{{author}}</h2> <p>{{tweet}}</p>
+    </li>
+
+</script>
+
+<ul class="tweets">
+
+
+
+
+
+
+</ul>
+
+
+<script>
+
+
+
+ func=function(){
+
+
+     data={   author:'jason',   tweet:'blahblah' }
+
+
+      template = Handlebars.compile( $('#template').html()  )
+
+
+     temp=template(data)
+        console.log(temp)
+
+     $('ul.tweets').append(temp)
+
+    }
+
+ func()
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+include ../lib/mixins/javascript
+include lib/mixins/graphics/index
+include lib/mixins/comm/index
+include lib/mixins/bootstrap/index
+include lib/mixins/experiment
+include ../header
+//if(!hideHeader==true)mixin flash mixin header
+//form.navbar-form.navbar-right(role="search")
+//    .form-group
+//        input.form-control(type="text", placeholder="Search")
+//    button.btn.btn-default(type="submit") Submit
+
+!!! 5
+html(lang="en")
+    head
+        title Wappy 101 template
+        meta(name="viewport", content="width=device=width, initial-scale=1.0")
+        include ../scripts
+        include css
+
+    body
+
+        nav.navbar-wrapper.navbar-inverse.navbar-fixed-top(role="navigation")
+
+            .container
+
+
+                .navbar-header
+
+                    button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-collapse")
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href"#") wappy
+
+                .collapse.navbar-collapse
+
+                    ul.nav.navbar-nav
+                        li.active
+                            a(href="#")
+                                span.glyphicon.glyphicon-home
+                                b &nbsp Home
+
+                        li.dropdown
+                            a(href="#", data-toggle="dropdown").dropdown-toggle
+                                span.glyphicon.glyphicon-user
+                                b &nbsp Work
+                                b.caret
+                            ul.dropdown-menu
+                                li
+                                    a(href="#") Worky
+                                li
+                                    a(href="#") Cappy
+                                li
+                                    a(href="#") Cutty
+
+                        li.dropdown
+                            a(href="#", data-toggle="dropdown").dropdown-toggle
+                                span.glyphicon.glyphicon-user
+                                b &nbsp Social
+                                b.caret
+                            ul.dropdown-menu
+                                li
+                                    a(href="#") Muggy
+                                li
+                                    a(href="#") Roomy
+                        li.dropdown
+                            a(href="#", data-toggle="dropdown").dropdown-toggle
+                                span.glyphicon.glyphicon-user
+                                b &nbsp Play
+                                b.caret
+                            ul.dropdown-menu
+                                li
+                                    a(href="#") Shooter
+                                li
+                                    a(href="#") Godzilla
+
+
+
+
+
+                    ul.nav.navbar-nav.navbar-right
+                        li
+                            a(href="#")
+                                span.glyphicon.glyphicon-asterisk
+                                b &nbsp Settings
+                        li.dropdown
+                            a(href="#",data-toggle="dropdown").dropdown-toggle
+                                span.glyphicon.glyphicon-info-sign
+                                b &nbsp Account
+                                b.caret
+                            ul.dropdown-menu
+                                li
+                                    a(href="#") Details
+                                li
+                                    a(href="#") Logout
+
+
+

@@ -1,0 +1,78 @@
+
+#signUp.modal.fade(role="dialog", tabindex="-1")
+
+    .modal-dialog
+
+        .modal-content
+
+            .modal-header
+
+                button.close(type="button", data-dismiss="modal")
+
+                h4.modal-title sign up form
+
+            .modal-body
+                form(action='/users/po', method="POST")
+                    br
+                    .form-group
+                        label(for="username") username:
+                        input#username.form-control(name = "u", type="text", placeholder="something funky")
+                    .form-group
+                        label(for="password") password:
+                        input#password.form-control(type="text", name="p", placeholder="something tricky")
+                    br
+                    button.btn.btn-primary(type="submit") submit
+
+            .modal-footer
+
+                button.btn.btn-default(type="button", data-dismiss="modal") close
+
+
+
+
+
+
+#login.modal.fade(role="dialog", tabindex="-1")
+    .modal-dialog
+        .modal-content
+            .modal-header
+                button.close(type="button", data-dismiss="modal")
+                h4.modal-title login form
+            .modal-body
+                form(role="form", action='/security', method="POST")
+                    .form-group
+                    label(for="inputUsername") username
+                    input#inputPassword.form-control(name="u", type="text", placeholder="...")
+                    label(for="inputUsername") password
+                    input#inputPassword.form-control(name="p", type="text", placeholder="...")
+                    button.btn.btn-primary(type="submit") Login!
+                    button.btn.btn-default(type="button", data-dismiss="modal") close
+
+
+
+#pop.modal.fade(role="dialog", tabindex="-1")
+    .modal-dialog
+        .modal-content
+            #pH.modal-header
+                a.close(data-dismiss='modal') ×
+                h3 Godzilla Game
+                h5 Popbox Message #354b
+            #pB.modal-body
+                h1 Results: Fail
+                h2 Lasted: 38 seconds
+                h2 Earned: 44 hero points
+            .modal-footer
+                a#pF.btn.btn-success(href='#') Play again
+                a.btn(href='#', data-dismiss='modal') Close
+
+
+
+
+#newPlayer.modal.fade(role="dialog", tabindex="-1")
+    .modal-dialog
+        .modal-content
+            .modal-header
+                button.close(type="button", data-dismiss="modal")
+                h4.modal-title new Player!
+            .modal-body
+                 //img#newPlayerMuggy

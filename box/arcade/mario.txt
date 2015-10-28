@@ -1,0 +1,24 @@
+NO-ROTATE NON-BOUNCE  MARIO (WHO DOES NOT DRAG/SLIDE)
+
+
+*ways to vary  mario:  
+-rest
+-freic
+-den
+
+ 
+*ways to vary run:
+--can(not) 'run' while in air
+
+ 
+*ways to vary walls
+-rest
+-freic
+-den
+
+
+//// OTHER WAYS
+
+//TURNY ~ ROTATY
+//BOUNCY  p.re(.8)
+//SLIDEY

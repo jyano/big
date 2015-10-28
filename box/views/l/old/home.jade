@@ -1,0 +1,25 @@
+extends ../layout
+block page
+    .row.hero-unit
+        h1 WELCOME TO WAPPY!!!
+    .row
+        p The first thing to do is to MAKE YOUR MUGGY ~ordered list, 'strong'
+        p features and navigation:       ~unordered list
+        p use CAPPY to store your pictures, and make funny captions, slide shows, animations
+        p use cutty to make transparant pngs
+        p hang out in roomy for a creative chat experience
+        p make a profile on muggy
+        p search for dates on matchy
+        p make books with worky
+        p make 'showcase' pages
+mixin ctxOld(cls, w, h, bc)
+
+    - cls = cls || 'canvas'
+    - w = w || 960
+    - h = h || 450
+    if bc
+        canvas(class = "#{cls}",width="#{w}",height="#{h}", style="background-color:#{bc}")
+    else
+        canvas(class = "#{cls}",width="#{w}",height="#{h}")
+    script.
+        CTX("#{cls}")

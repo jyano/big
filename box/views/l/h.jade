@@ -1,0 +1,105 @@
+- cls=function(a){var s='btn';if(!a){return s};var c={b:'primary',g:'success',t:'info',o:'warning',r:'danger',l:'link'},z={b:'lg',s:'sm',t:'xs'};a=a.split('');s+=' btn-'+c[a[0]];if(a[1]){s+=' btn-'+z[a[1]]};return s}
+
+mixin b(c,v,f,n)
+    - c=c||'b';v=v||c;n=n||v;f="run('"+n+"');"+f||'';
+    button(type="submit",id=n,class=cls(c),onclick=f) #{v}
+    script.
+        #{n}=$('#'+'#{n}')
+
+mixin ip(c,v,f,n)
+    .div
+        input.input-sm
+        +b(c,v,f,n)
+
+mixin tg(a,b)
+    -a[3]=a[3]||a[1];b[3]=b[3]||b[1]
+    +b(a[0],a[1],a[2],a[3])
+    +b(b[0],b[1],b[2],b[3])
+    script.
+         #{b[3]}.hide();
+         #{a[3]}.click(function(){#{a[3]}.hide();#{b[3]}.show()})
+         #{b[3]}.click(function(){#{b[3]}.hide();#{a[3]}.show()})
+
+
+
+
+mixin t(l,n,p,v)
+    n=n||'mit'
+    label(for=n) #{l}
+        input.form-control(type='text',id=n,name=n,value=v,placeholder=p)
+
+mixin f(l,n,p,v)
+    - n=n||'mit';p=p||'';v=v||''
+    form.form-inline(role='form')
+        .form-group
+            label(for=n) #{l}
+            input.form-control(type='text',id=n,name=n,value=v,placeholder=p)
+        .form-group
+            label(for=n) #{l}
+            input.form-control(type='text',id=n,name=n,value=v,placeholder=p)
+
+
+
+
+mixin iF
+    form.well(method=false,action=false)
+        +t(a)
+        +b
+
+
+
+mixin ch
+    #chat
+        input#mit
+        +b('b')
+
+
+
+
+mixin hin(n,v)
+    input(type="hidden",name="#{n}",value="#{v}")
+
+
+mixin rin(n,I)
+    each i in I
+        input(type="radio",name="#{n}",value="#{i}")
+        span &nbsp&nbsp#{i}&nbsp&nbsp
+
+mixin rin2(n,I)
+    each i in I
+        span &nbsp&nbsp#{i}&nbsp&nbsp
+        input(type="radio",name="#{n}",value="#{i}")
+mixin chin(I)
+    each i in I
+        span &nbsp&nbsp#{i}&nbsp&nbsp
+        input(type="checkbox", name="#{i}")
+
+
+mixin god
+
+    .form-group
+        label(for="kind") kind:
+        input#kind.form-control(name = "kind", type="text")
+
+    .form-group
+        label(for="name") name:
+        input#name.form-control(type="text", name="name")
+
+    .form-group
+        label(for="age") age:
+        input#age.form-control(type="text", name="age")
+
+    button.btn.btn-primary(type="submit") submit
+
+
+
+//
+mixin B(bA,po,pre,po2)
+    if pre
+        br
+    each b in bA
+        button(id='#{b}') #{b}
+        if po
+            br
+        if po2
+            br

@@ -1,0 +1,104 @@
+h1 functions
+
+
+p if no return value is specified, it returns 'undefined'
+p if a sp. pam not passed in, it will be 'undefined' w/i the fxn
+p 1 + 'undefined' = NaN
+
+
+
+p arguments returns #pams passed to fxn on THIS call
+h3 to have a function return/pass whatever pams were passed to it: > return arguments
+p can set: > number-of-args = arguments.length
+
+h4.
+    some functions:
+    parseInt - 123abc:123, 1abc: 1, abc1: NaN | can pass 2nd pam: 'radix'
+    parseFloat(like parseInt but for decimals)
+    isNan
+        can use it to see if parseInt/Float succeeded
+        tries to convert input to a number
+        not equal to itself: NaN === NaN -> false
+    isFinite: true of not Nan and not Infinity
+    encodeURI: assumes you want an entire URL  - replaces space:%
+    encodeURIComponent: encodes just what is given -same but also replaces / (http://): %
+    decodeURI, decodeURIComponent
+
+
+h4.
+    make all function vars local
+    declaring 'var x = 1' anywhere in the function, makes it local everywhere, but
+    will be undefined to all code above it
+
+    can make a fxn that accepts a callback and applies it during every iteration of a loop
+h4.
+    self-invoking fxns good for init work
+    private fxns: fxns defined in fxns - by either method, but if literal.. make sure use 'var'
+    for a fxn that returns a fxn, you can immediately invoke the 2nd fxn: a()()
+    fxn can redefine itself! > a = a(); good for fxn that does some init and then has a main use
+
+h4.
+    example:  a = $f(  fxn init(){};   fxn work(){};   init();  return work )( )
+    can have a fxn determine best way to do something based on browser detection, and then redefine itself
+    so it only needs to 'sniff' once
+
+
+h4.
+    scope chain:  nest fxns have access to vars in parents
+    SCOPE DETERMINED BY WHEN FXNS DEFINED, NOT WHEN EXECUTED
+
+h3.
+    two ways to make closure: return inner fxn or don't use 'var' (make it as global)
+    lexical scope:  f1(v-a=1; f2()) ;  f2(<-a)   ; f();   => a 'undefined'
+        f2 cannot access a b/c it was not its scope when it was defined
+        f1 CAN access f2 b/c though it was not availble when f1 was defined, it was made
+        available by the time f2 was called
+    ex: f1:alert(z);  z=100; a()->100;  z=200; a()->200
+    a fxn remembers its scope chain from time of its fxn definition, and it will always be uptodate
+        on changes to vars in that scope  - even if NEW vars are added.  again, it remembers its 'environment'
+            (scope chain), not the actual variables
+    fxns return from a fxn (forming closures), will each have their OWN scope for the closure
+        each time the outer fxn is called, the vars are created new and the outer fxn has no memory..
+            it provides a fresh scope everytime it is called
+h3.
+    when making closures by declaring global functions, if one fxn declares mult. global functions,
+        they will share the same scope as each other;
+
+    f1(var x;  b = $F(alert x)); x=1000;  f1(); b(); -> undefined.  if f1 didn't 'hoist' x,
+        then b could 'inherit' x from global scope
+h3.
+    var n; f1(var b = 5; n = f(){alert b}  ); f1();  -- here n will keep access to f1's scope,
+        b/c it was defined inside f1, even though it was declared in global scope
+        (and also becomes global b/c f1 didn't call it with var)
+
+h3.
+    a = [];  f1(((( [[for i in  1,2,3 : a[i] = f(<- i) ]]; return a)))) ; // all 3 fxns on array a return 3
+        how to get it right?   use another closure :) -- the key is to use the middle fxn to 'localize' the value
+            of i at ever iteration (alternatively a normal - non self-invoking - fxn would work, too):
+            f1(((  var a=[]; var i;  i-in-1,2,3[ a[i]= f(x){<- $f(<-x)}(i)] ; return a  )))
+h3.
+    in this example, we use a self-invoking anonymous fxn:
+        var get; var set; ($f("  var secret = 0;  get = $f(<-secret);  set = f(x){secret=x}     "))
+
+h3.
+    lets make a pointer that iterates:
+    fxn setup (x) { var i = 0; return fxn(){ return x[i++]   }   }  ; next = setup(-array or other datastruture-)
+h1  each invocation of a fxn is associated with an invocation context (value of 'this')
+p    if fxn is a method, then 'this' will be the object it is on
+
+
+
+ F.P.add:  "function (x){return add(this)(x)}"
+ F.P.exec:  "function (pam){ return eval( this(pam)  )   }"
+
+ global add:    "function (fxn1){
+      return  function(fxn2){
+          return  function(pam){
+              return  fxn2.toSource() + '(' + fxn1.toSource()   + '(' + pam + '))' } }}"
+
+                  "(function (x){return x * x})"
+                  "function (y){return y + 3}"
+                      a = fxn1.add(fxn1).exec(233)
+
+                      // i just change it that i can chain more b/c its not waiting on pam.. then
+                            exec can pass in the pam AND return eval, by wrapping all of it at that point..

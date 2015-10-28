@@ -1,0 +1,20 @@
+Math.random
+
+setInterval
+setTimeout
+_.each
+_.map
+_.random
+
+
+cjs.S  cjs.stage
+cjs.tick
+cjs.watchKeys
+
+
+b2d.W
+
+$.can
+
+
+shapes are transparant canvases that u can draw on and position and manipulate .. brilliant actually!!

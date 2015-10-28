@@ -1,0 +1,123 @@
+mixin l('image')
+mixin scope
+    mixin J("I = {}")
+
+mixin newImage(img)
+    if img
+        mixin set("img", "new Image()")
+    else
+        mixin J( "I.image = new Image()" )
+
+mixin setImageSource(img, src)
+    mixin J(img + ".src='" + src + "'")
+mixin SRC(img, src)
+    mixin setImageSource(img, src)
+mixin setSRC(src, img)
+    if src
+        if img
+            mixin SRC(img, src)
+        else
+            mixin SRC("I.image", src)
+    else
+        if i
+            mixin SRC(img, "I.source")
+        else
+            mixin SRC("I.image", "I.source")
+
+// add onLoad-cb to an image
+mixin handler(func, img)
+    script.
+        #{img}.addEventListener('load', #{func})
+
+mixin listen(func, img)
+    if img
+        if func
+            mixin handler(func, img)
+        else
+            mixin handler("function(){alert(1)}",  i)
+    else
+        if func
+            mixin handler(func, "I.image")
+        else
+            mixin handler("function(){alert(1)}", "I.image")
+
+
+mixin IMAGE(src, func)
+    mixin scope
+    mixin newImage
+    if func
+        mixin listen(func)
+    else
+        mixin listen
+    if source
+        mixin setSRC(src)
+
+mixin pic(func, src)
+    mixin scope
+    mixin newImage
+    mixin listen(func)
+    mixin setSRC(src)
+
+
+mixin PIC(def, src)
+    mixin f(def, "tempFunc")
+    mixin pic("tempFunc", src)
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////// make html image elements
+mixin imgEl(src, id, w, h)
+    - id = id || 'img'
+    img(src = "#{src}", id = "#{id}", width="#{w}", height="#{h}")
+mixin imgE(src,w,h)
+    if h
+        img(src = '#{src}', height='#{h}', width='#{w}' )
+    else
+        if w
+            img(src = '#{src}', height='#{w}', width='#{w}' )
+    img(src = '#{src}')
+    img(src = '#{src}')
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// make html canvas elements
+
+
+mixin ctx(id, w, h, bc)
+    - id = id || 'canvas'
+    - w = w || 960
+    - h = h || 450
+    - bc = bc || '#ccc'
+    canvas(id = "#{id}",width="#{w}",height="#{h}", style="background-color:#{bc}")
+    mixin set(id, "$('#" + id + "')")
+    mixin set(id, id.get(0))
+    mixin set(id, id.getContext('2d'))
+    mixin set("C", "miniContext("+id +")"
+
+
+
+
+
+
+
+
+
+
+
+
+
+// game controller
+mixin UDLR
+    button#up.btn.btn-primary up
+    button#down.btn.btn-primary down
+    button#left.btn.btn-primary left
+    button#right.btn.btn-primary right
+

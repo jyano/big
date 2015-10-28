@@ -1,0 +1,21 @@
+mixin css(fileName)
+    link(rel="stylesheet", href="/#{fileName}.css")
+
+mixin s(fileName)
+    script(src="/#{fileName}.js")
+
+mixin S(scripts)
+    - each script in scripts
+        +s(script)
+
+mixin j(javascript)
+    script.
+        #{javascript}
+
+
+mixin v(varName, val)
+    script.
+        #{varName} = "#{val}"
+
+
+

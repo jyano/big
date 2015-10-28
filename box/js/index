@@ -1,0 +1,48 @@
+resources
+    defaultMug
+
+tests
+    routeTests
+
+app
+    app
+    commSocket
+    game
+    nap
+    nav
+    socekt
+    text.html
+    ui
+    uiapp
+
+base
+
+    objects
+    glossary
+    core
+    can
+    sys
+    workerFile
+    jqueryplugins
+
+
+html
+    boot
+    buts
+    struct
+    html
+    dv
+
+
+lib
+    draw
+    event
+    move
+    time
+    inputs
+    math
+    dim
+
+
+old
+    qq

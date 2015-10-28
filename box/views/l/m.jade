@@ -1,0 +1,83 @@
+mixin bff
+    br
+    br
+    br
+    br
+
+
+mixin mf
+    script.
+        mf = #{mf}
+
+
+
+mixin fl
+    if ms
+        if ms.length>0
+            h2.alert.alert-danger
+                each m in ms
+                    p &nbsp #{m}
+
+
+
+mixin bG(a,b,c)
+    - b=b||a;
+    if c=='green'
+        .btn-group: a.btn.btn-success.btn-lg(data-toggle="modal",href="#"+a) #{b}
+    else
+        .btn-group: a.btn.btn-primary.btn-lg(data-toggle="modal",href="#"+a) #{b}
+
+
+
+mixin li
+    .btn-toolbar
+        +bG('signUp','Sign Up!','green')
+        +bG('login','Login!')
+
+
+mixin w(s,t)
+    h4 Welcome to #{s}!
+    h5 ..a place to #{t}
+
+
+
+mixin uI
+    form(action="/upload",method="post",enctype="multipart/form-data")
+        input(type="file",name="i")
+        mixin sm
+
+
+
+mixin i(s,w,h)
+    - w=w||200;h=h||200
+    img(src="#{s}",width="#{w}",height="#{h}")
+
+
+
+mixin C(n,w,h,r,l)
+    - n=n||'can';w=w||960;h=h||450;r=r||'blue';
+    if r
+        canvas(id="#{n}",class="#{l}",width="#{w}",height="#{h}",style="background-color:#{r}")
+    else
+        canvas(id="#{n}",class="#{l}",width="#{w}",height="#{h}")
+    script.
+        C("#{n}")
+
+
+
+mixin tn(i)
+    .col-xs-3
+        .thumbnail
+            a.btn.btn-mini(href='/pics/del/#{i}') x
+            a.btn.btn-mini(href='/transform/#{i}') edit
+            a.btn.btn-mini(href='/set/#{i}') set
+            img(src="/"+i)
+            br
+
+
+
+mixin tnT(i)
+    .col-xs-2
+        a.thumbnail(href='/transform/#{i}')
+            img(src='/'+i)
+        br

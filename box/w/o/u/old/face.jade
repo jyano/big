@@ -1,0 +1,42 @@
+extends ../skull
+
+block append scripts
+    style.
+            body {
+                font-family: Verdana;
+                font-size: 13px;
+
+            }
+            .header{background-color: #5bc0de}
+            .dark { background-color: #464646; padding: 0px }
+            .sort { background-color: #0088cc; color: #d9edf7; padding:8px; padding-top:5px;padding-bottom:10px;  margin: 8px; margin-bottom: 15px}
+            .sorty { color: #d9edf7; padding: 10px; margin: 0px}
+            .well { border-left-width: 0px; margin-right: 0px}
+            h6 { color: #0088cc }
+            a { color: #d9edf7 text-decoration: none; }
+            a:hover { color: 'white' }
+            div {margin-bottom: 5 px}
+            .item {color:#da4f49}
+            .page {background-color: #005580  ; padding:  20px}
+
+
+            .texty { background-color: #FFFFFF; color: #000000; padding: 5px; margin: 0px}
+
+block face
+    body
+        .container
+
+            if(!hideHeader==true)
+                .row.header
+                    mixin header
+
+
+            .row
+                mixin flash
+
+
+
+
+            block content
+
+

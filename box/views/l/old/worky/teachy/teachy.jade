@@ -1,0 +1,18 @@
+extend ../../layout
+block content
+
+    .col-md-4
+        h4 book collection
+
+    .col-md-4.text-center
+        h1 t e a c h y
+        form.well(method=false, action=false)
+            input#mit(name = 'topic', type = 'text')
+            button#sub(type = 'submit') ;)
+        each topic in topics
+            p
+                a(href='/teachy/ ')
+                span &nbsp (num of msgs)   &nbsp
+    .col-md-4
+
+        p hello

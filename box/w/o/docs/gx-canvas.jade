@@ -1,0 +1,64 @@
+h4 graphics api
+
+    h1 drawImage (image, x, y [,w,y]
+
+
+    h1.sort
+        p refactor: IMAGE-OBJECT = SOURCE = I =IO, WINDOW = W =CANVAS = DESTNAION = C:  I, I-UPPER-LEFT-COORDS(x,y), I-SIDE-LENGTHS(W/H), W-UPPER-LEFT-COORDS(x,y), W-SIDE-LENGTHS(W/H)
+
+
+
+    h1 answer: IMAGE,  SOURCE-IMAGE-OBJECT-RECTANGLE-UPPER-LEFT-COORDINATE-POINT(x,y)  SOURCE-RECTANGLE-SIDE-LENGTHS(w,h) , DESTINATION-CANVAS-RECTANGLE-UPPER-LEFT-COORDINATE-POINT(x,y), DESTINATION-CANVAS-RECTANGLE-SIDE-LENGTHS(w,h)
+
+
+
+    h1 drawImage full pams: img       source-coords, source-w/h    x/y  width/height
+    h2 so.. source coords is WHERE on the IMAGE OBJECT do you want to start 'cutting' from
+    h3 and hence, source-w/h says how MUCH to cut out
+    h4 (relative to the source-coords (the POINT, that you just choose)
+    h5 (which will always be the upper left pixel of the cut-out)
+    h2 lets review..
+    h3 so, the first two pams are the POINT to start cutting from
+    h3 and the second pams just set how much distance to include (in both directions (of coruse))
+    h1 HALF WAY THERE.. I PROMISE!
+    h5 now we must work hard
+    h3 what's with this next x/y?
+    h2 EASY
+    h6 c'mon now.. it's just:
+    h5 it's where to PUT IT!!!!!
+    h3 where to put it ON THE CANVAS!!!!!!!
+    h4 what could be left to adjust?? two final pams to go....
+    h5 ...........
+    h6 ... you can do it!!!
+    h2 ok, ill shupt and let you think:
+    h1 it can be views 2 ways:
+    h1 FIRST
+    h3 it is simply the 'HOW MUCH SPACE' equivalent on the canvas/'destination side' DESTINATION :) :) :)
+    h1 HERE, IMAGE IS THE SOURCE (AND IT HAS ITS OWN SOURCE!) AND THE CANVAS IS THE DESTINATION!!  MY BOOK WILL SHOW ME HOW TO TAKE THIS IMAGE/CANVAS RELATIONSHIP TO CANVAS/CANVAS..
+    h5 UMMMMM... ok.... just tell me the other 'way it can be viewed' and don't be weird about it
+    h1 ok
+    h1 fine
+    h1 !
+    h1 well.. GO ALREADY
+    h1 SHUT UP ALREADY!!!!
+
+    h4: it is also 'how much space' to STRECH the source
+    h4 (but it is saying to what amount of width and height do we need to stretch it, in order to make it fit to the width/height of the area we want to 'cover' on the DESTINATION
+    h3 but it would just be the same amount as what was specified when we said how much space we wanted it to cover on the DESTINATION, just above
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

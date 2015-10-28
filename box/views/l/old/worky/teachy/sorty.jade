@@ -1,0 +1,361 @@
+.row.text-center.sort
+    form(action = '/object/po', method = 'post')
+        label item &nbsp
+        input(type = 'text', name = 'leaf', autofocus="autofocus")
+        &nbsp &nbsp
+        input(type = 'submit')
+.col-md-4
+    each value, key in user.sorty.object
+        br
+        .sort.col-md-12
+            .sort.text-center
+                button: h2: a(href='/object/delSort/#{key}') x
+                h2
+                    button.sort-link(name='#{key}') #{key}
+                h4 &nbsp #{value.content}
+                each v, k in value.object
+                    label
+                        button: a(href = '/object') x
+                        button: a(href = '/object/#{key}/#{k}') #{k}
+                        &nbsp &nbsp
+.col-md-8
+    br
+    &nbsp
+// textarea(rows="20", cols="112", name='content')
+//h6 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp #{v.content}
+                                  h4 Welcome to sorty!
+                                  form(action = '/sorty/po', method = 'post')
+label name :
+input(type = 'text', name = 'name')
+label descrption :
+input(type = 'text', name = 'text')
+br
+input(type = 'submit')
+//button new sort
+    h3 These are your sorts:
+    each sort in user.sorty
+div
+    div #{sort.name} -- #{sort.text}
+        a(href = '/sorty/#{sort.name}') &nbsp    ->
+// p -- SORTS: #{sort.sorts.length}
+     br
+     br
+            //input(type = 'text', name = 'text')
+//input(type = 'submit')
+                                                                        .alert.alert-block.alert-danger
+form.at({m: 'POST', action:'/sort/del'})
+( ip('h',sort._id).nm('_id'),    ip('s','delete').k('pr')    )
+h1(sort.name),
+p(sort.text),
+br(),
+    .alert.alert-block.alert-info
+    form(action = '/sorty/po/:#{sort._id})
+    ip('t').nm('text')
+        ip('s')
+
+
+    .row
+
+
+        p THIS SHOULD BE RIGHT AS THE SORT :    #{JSON.stringify(sort)}
+        br
+        br
+
+        p entire sorty from database:   #{JSON.stringify(user.sorty)}
+        br
+        p cookie's path:  #{JSON.stringify(cookie)}
+        p cookieTail:  #{JSON.stringify(cookieTail)}
+        p cookieHeads:  #{JSON.stringify(sessPath)}
+        br
+
+        p preSorty:  #{JSON.stringify(preSorty)}
+        p sort :    #{JSON.stringify(sort)}
+        p sorty:    #{JSON.stringify(sorty)}
+
+        a(href = 'sorty/clear') clear sorty
+        br
+        br
+
+    .row.sort
+        //- LEFT (WELL) ROOT COLUMN
+        .col-md-3
+            br
+            .well
+                form(action = '/sorty/po/root', method = 'post')
+                    input(type = 'text', name = 'name', autofocus="autofocus", placeholder="new sort")
+                    //input(type = 'hidden', value = '#{ss.sortyPath}', name = 'sortPath')
+                    input(type = 'submit', value='+')
+                each value, key in user.sorty
+                    .row
+
+                        h4.col-md-2
+                            button: a(href='/object/delSort/#{key}') x
+                            h4.col-md-10
+                                a(href = '/sorty/#{key}') #{key}
+                                if (value.item)
+                                    h6.item &nbsp#{value.item}
+                                if (value.sorty)
+                                    each v, k in value.sorty
+                                        h5: a(href = '/object/#{key}/#{k}')&nbsp &nbsp &nbsp #{k}
+
+
+
+
+
+
+
+
+
+        if (!root)
+            .col-md-9:.sort
+                // MAIN DIVS
+
+                .row
+                    // HEADER        /// THE LEAF !!!
+                    col-md-6
+                    //a.btn.thumbnail(href = '/object') home
+                    //label.h1.sort #{obPath}
+                    if (ss.sortyPath)
+                        h3 &nbsp &nbsp
+                            each sort in ss.sortyPath
+                                span /#{sort}
+
+
+
+                .row
+                    // TEXT AREA
+
+                    .col-md-3
+                        .well
+                            // LEFT HALF
+                            form(action = '/sorty/updateSort', method = 'post')
+                                textarea(rows="7", cols="17", name='item') #{preSorty.item}
+                                p &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                                input(type = 'submit', value = 'save')
+                                input(type = 'hidden', value = '#{obPath}', name = 'obPath')
+                            br
+
+
+
+
+
+
+
+
+
+                    .col-md-8.well
+                        // RIGHT HALF    THE TREE !!!!
+                        .row
+                            // ITEM INPUTTER
+                            form(action = '/sorty/po', method = 'post')
+                                input(type = 'submit', value='+')
+                                input(type = 'text', name = 'name', autofocus="autofocus")
+                                input(type = 'hidden', value = 'hi', name = 'obPath')
+
+
+                        .row
+                            // TREE
+                            // .col-md-12
+                            if (sort)
+                                each value, key in sort
+                                    // SUB=SORT !!! :)
+                                    .row.sort
+
+                                        .col-md-1
+                                            // delete button
+                                            br
+                                            form(action = '/object/delSort/' + obPath + '/' + key, method = 'get')
+                                                input(type = 'submit', value= 'x')
+                                                    input(type = 'hidden', value = '#{obPath}', name = 'obPath')
+
+
+                                        .col-md-11
+                                            .row
+                                                // sub-sort title header
+                                                .col-md-12
+                                                    form(action = '/sorty/viewSort', method = 'post')
+                                                        input(type = 'submit', value='#{key}')
+
+
+                                                        input(type = 'hidden', value = '#{key}', name = 'name')
+
+                                                   // a.sub-sort-name(href = '/sorty' + '#{key}')
+                                                        h4 #{key}
+
+
+                                            .row
+                                                //.col-md-2: textarea(rows="1", cols="4", name='content') #{value.item}
+
+                                                .col-md-4
+                                                    form(action = '/sorty/po/sub', method = 'post')
+                                                        input(type = 'submit', value='+')
+                                                        input(type = 'text', name = 'name',  size='10')
+                                                        input(type = 'hidden', value = '#{key}', name = 'sub')
+
+                                            .row
+                                                br
+                                                &nbsp &nbsp
+                                                if (value.sorty)
+                                                    each v, k in value.sorty
+                                                        a.sub-sort-name(href = '/sorty/#{key}/#{k}') #{k} &nbsp &nbsp
+
+
+
+
+                                                            extend ../../face
+block content
+
+    h1 object POST
+    .row.sort
+//- LEFT (WELL) ROOT COLUMN
+        .col-md-3
+            br
+            .well
+                form(action = '/object/po', method = 'post')
+                    input(type = 'text', name = 'name', autofocus="autofocus")
+                    input(type = 'submit', value='+')
+                each value, key in user.object
+                    .row
+                        if (key != sub || true)
+//.col-md-1
+// h4: a(href='/object/delSort/#{key}') x
+                            h4.col-md-12
+
+                                button: a(href='/object/delSort/#{key}') x
+                                button.sort-link #{key}
+
+
+                        else
+                            .col-md-1
+// h1: a(href='/object/delSort/#{key}') *
+                            .col-md-10
+                                h4: a(href = '/object/#{key}')
+                                    .icon-italic #{key}
+                                    each v, k in value.object
+                                        h6: a(href = '/object/#{key}/#{k}')&nbsp &nbsp  #{k}
+
+        .col-md-9.well:.sort
+// MAIN DIVS
+
+            .row
+// HEADER        /// THE LEAF !!!
+                col-md-6
+//a.btn.thumbnail(href = '/object') home
+//label.h1.sort #{obPath}
+                each sort in SPA
+                    label.h1.sort #{sort}
+
+
+
+            .row
+// TEXT AREA
+
+                .col-md-3
+                    .well
+// LEFT HALF
+                        form(action = '/object/update/po', method = 'post')
+                            textarea(rows="1", cols="10", name='content') #{content}
+                            p &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                            input(type = 'submit', value = 'save')
+                            input(type = 'hidden', value = '#{SPA}', name = 'obPath')
+                        br
+
+
+
+
+
+
+
+
+
+                .col-md-8.well
+// RIGHT HALF    THE TREE !!!!
+                    .row
+// ITEM INPUTTER
+                        form(action = '/object/po', method = 'post')
+                            input(type = 'submit', value='+')
+                            input(type = 'text', name = 'leaf', autofocus="autofocus")
+                            input(type = 'hidden', value = '#{SPA}', name = 'SPA')
+
+
+                    .row
+// TREE
+                        .col-md-12
+                        each value, key in object
+// SUB=SORT !!! :)
+
+
+
+                            .row.sort
+
+                                .col-md-1
+// delete button
+                                    br
+
+                                    button.sort-del(type = 'submit', value= 'x', id ='#{SPA}', name = '#{key}') xxx
+
+
+                                .col-md-11
+                                    .row
+// sub-sort title header
+                                        .col-md-12
+
+
+                                            button.sort-link(id = '#{SPA}', name = '#{key}') #{key}
+
+                                    br
+                                    .row
+                                        .col-md-2: textarea(rows="1", cols="4", name='content') #{value.content}
+
+                                        .col-md-4
+                                            form(action = '/object/po', method = 'post')
+                                                input(type = 'submit', value='+')
+                                                input(type = 'text', name = 'name',  size='10')
+                                                input(type = 'hidden', value = '#{SPA}', name = 'SPA')
+
+                                        .col-md-4
+
+                                            each v, k in value.object
+                                                a.sub-sort-name(href = '/object/#{obPath}/#{key}/#{k}') #{k} &nbsp &nbsp
+
+
+
+
+
+
+
+
+
+
+
+
+// h6 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp #{v.content}
+
+
+
+//p here is your object: #{JSON.stringify(user.object)}
+
+// h1 Object: #{obName}
+       // h4 &nbsp &nbsp #{content}
+// p #{content}
+
+
+//  p subobject: #{JSON.stringify(object)}
+        //button new sort
+
+            h3 These are your sorts:
+
+            each sort in user.sorty
+                div
+                    div #{sort.name} -- #{sort.text}
+    a(href = '/sorty/#{sort.name}') &nbsp    ->
+// p -- SORTS: #{sort.sorts.length}
+             br
+             br
+
+//input(type = 'text', name = 'text')
+//input(type = 'submit')
+
+
+
+

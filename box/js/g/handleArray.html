@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+
+<script src="/hb.js"></script>
+    <script src="/jq.js"></script>
+
+
+    <style> h2 span {color: red; font-size: 40px} </style>
+</head>
+
+
+<body>
+hi
+
+
+<ul class="tweets">
+
+
+        <script id="template" type="text/x-handlebars-template">
+
+            {{#each this}}
+            <li>
+                <h2>{{author}} {{#if age}}- <span>{{age}}</span>{{/if}}</h2>
+                <p> {{{tweet}}}  </p>
+            </li>
+{{/each}}
+        </script>
+
+
+
+
+
+
+</ul>
+
+
+<script>
+
+
+
+ func=function(){
+
+
+     data=[{   author:'jason',   tweet:'blahblah', age:3 },
+         {   author:'mason',   tweet:'mlah <strong> mlah </strong>' }
+     ]
+
+
+      template = Handlebars.compile( $('#template').html()  )
+
+
+     temp=template(data)
+        console.log(temp)
+
+     $('ul.tweets').append(temp)
+
+    }
+
+ func()
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

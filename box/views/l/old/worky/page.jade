@@ -1,0 +1,42 @@
+extends l/ly
+block C
+    .row
+    .col-md-2
+            // HEADER
+            h4.text-center
+                a(href='/worky') books
+                span   - &nbsp
+                a(href='/worky/'+book.title) #{book.title} &nbsp
+                h3.text-center: a(href='/worky/'+book.title+'/'+bookChapter.name) #{bookChapter.name} &nbsp
+            .well
+                h3: span pages
+                each page in bookChapter.pages
+                    h4: a(href='/worky/' + page.heading) #{page.heading}
+        .col-md-10
+            br
+            h1 &nbsp #{chapterPage.heading}
+            .sort
+
+
+
+
+                form.h3.text-center(action='/worky/page/updateContent',method='post')
+                    input(name='bookId',type='hidden',value=book._id)
+                    input(name='chapterId',type='hidden',value=bookChapter._id)
+                    input(name='pageId',type='hidden',value=chapterPage._id)
+                    span.pull-right &nbsp &nbsp
+                    button.pull-right: span dont
+
+                    span.pull-right &nbsp
+                    input(type='submit',value='save').pull-right
+
+                    span.pull-right &nbsp &nbsp
+                    button.pull-right: span back
+
+
+                    br
+
+                    textarea.texty(name='content',rows="20",cols="73") #{chapterPage.content}
+                br
+                br
+

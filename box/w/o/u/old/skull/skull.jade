@@ -1,0 +1,52 @@
+include bones/bones
+
+doctype 5
+html
+    head
+        block scripts
+            script(src="http://chaijs.com/chai.js")
+            script(src="http://code.jquery.com/jquery-latest.min.js")
+            link(href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css", rel="stylesheet")
+            link(href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css", rel="stylesheet")
+            script(src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")
+            script(src="/underscore.js", type="text/javascript")
+            script(src="/socket.io/socket.io.js")
+            script(src="http://code.createjs.com/createjs-2013.05.14.min.js")
+            script.
+                console.log(' '); console.log('loading dopamine..');
+
+            script(src="/dopamine.js")
+            script.
+                console.log('dopamine infused -> browser stimulated!');  console.log(' ');
+
+
+
+
+            script.
+                console.log('inside skull.jade (inline js).. loading mf from template data-ob into scope : ');
+                var mf = #{mf};
+                console.dir(mf);  console.log(' ');  console.log(' '); console.log('data-ob specifies that we preload these dendrites (will execute when jquery: PAGE READY):'); var dendrites = [] ;
+            // INTERESTING .. it 'mf' is based into jade all the way back from the medulla! .. and now skull accesses it and tells client js to declare it (make a fxn??)
+
+
+
+
+            if (js)
+                script.
+                    console.dir('#{js}');
+                mixin js(js)
+            // INTERESTING .. it checks for js based into jade from the route-handler, and uses a mixin to tell client js to load each of those DENDRITES (scripts) into vars
+            // that can be easily accessed by dendrite.js, which loads them after it does all the init...
+
+
+            script.
+                console.log(' '); console.log('EXECUTING DENDRITE.JS');
+
+            script(src="/graphicsFunctions.js");
+            script(src="/dendrite.js");
+
+            script.
+               console.log('DENDRITE.JS returned from execution'); console.log(' ');
+
+    block face
+

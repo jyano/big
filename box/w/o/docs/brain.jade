@@ -1,0 +1,26 @@
+extend ../face
+block content
+
+
+    .row.well
+        .col
+            .col-md-offset3.span6
+                h1 b r a i n
+
+    p here we will learn (as we go) about the brain
+    p lets begin..
+
+
+        p i have a function called 'sub' (in dendrite)
+        p to use it, make an input#mit and a button#sub.  then just call sub and pass it a function to call on 'click.'  the function will receive the input text :)
+        p i can use it in ranky, by having the input text becoming a pam on a new url redirect (ranky/*pam*)
+
+    .well
+        h2 accessing pams
+        p normally the way to access url pams is with 'req.params', but i've already appreviated that to just 'pams'
+            p lets design a mw called 'pam'
+                p it works by simply assigning pams to face.pams, but assigns just first pam, also, to just face.pam
+
+
+    h2 how to pass server js vars DIRECTLY to the client js:
+    p its done via jade.  jade receives that var and then passes it back to js via mixin: pass !!!

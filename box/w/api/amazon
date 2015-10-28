@@ -1,0 +1,18 @@
+i-46292374
+
+
+chmod 400 ~/Desktop/abc1234.pem
+
+ok, so i couldnt login over the firewall but i could through my phone
+BUT, in the proccess, i lost everything.  and now i opend an ubuntu instance
+*****
+
+ssh -i ~/Desktop/keypair.pem ec2-user@ec2-54-179-179-34.ap-southeast-1.compute.amazonaws.com
+*****
+
+//export LC_ALL=C (to make mongod work on server)
+
+//sudo mongod --fork --logpath /var/log/mongod.log
+
+//sudo /usr/local/bin/forever start  wappy.js (on server)!!!
+

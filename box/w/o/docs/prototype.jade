@@ -1,0 +1,38 @@
+h3.
+    all fxns have a pop: prototype, initially with an empty obj
+    you can add pops to it or replace it
+
+
+
+    'own pops'  take precedence over prototype pops with same name
+
+
+    can use hasOwnProperty()
+
+    if you call a pop that your obj doesn't have, js will look to see if its prototype has it
+        (it goes all the way up to Object
+
+
+
+
+
+    function pops: length, constructor, prototype
+    when you augment a fxn's prototype obj, it doesnt effect the fxn.  it only effects
+        objects made when using the fxn as a constructor
+
+
+    you can check obj pops with a 'for-in loop' but only 'enumerable' ones will be returned
+
+    to check, use: propertyIsEnumerable() -  it returns false for all of the prototype's pops, even ones that
+        really are enumerable in the sense that they will show up in the for-in loop
+            -returns true for own pops that are not built-in
+
+        most built in pops/mets are not enum.  pops coming down the prototype chain are not, but they
+            will be if you check them at their own level
+
+    can use: hasOwnProperty()   , during the loop to distinguish between an objs 'own' pops vs pops/mets
+        from its prototype
+
+            isPrototypeOf()  - is a sp. obj a prototype of another
+
+

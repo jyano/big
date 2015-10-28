@@ -1,0 +1,19 @@
+extends l/ly
+block C
+    h1 Coin a new term today!
+    h5 (and have proof forever!)
+    if (fields)
+        +userItemForm("term")
+    else
+        p no 'fields'
+    .well
+        div.badge.badge-success: h1 your terms
+        each t in U.term
+            div
+                br
+                h5.pull-right #{t.stamp}
+                .badge.badge-info: h5 #{t.term}
+                h4 &nbsp #{t.meaning}
+                hr.warning
+    p #{U.term}
+

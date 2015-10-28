@@ -1,0 +1,19 @@
+     BUTTONS({flipX:function(){C.T(((i.w + 1)*(-1)),((-i.h + 1)*(-1)));C.R(Math.PI);D();},
+                                                  flipY:function(){C.R(Math.PI/32);D();},
+                                                              moveUp:function(){C.T(0,-50);D();},
+                                                  moveDown:function(){C.T(0,50);D();},
+                                                  moveLeft:function(){C.T(-50,0);D();},
+                                                  moveRight:function(){C.T(50,0);D();},
+                                                              rotateC:function(){C.R(rad(10));D();},
+                                                  rotateCC:function(){C.R(-(rad(10)));D();},
+                                                              smaller:function(){C.S(.9,.9);C.D(i,100,100,i.w,i.h);},
+                                                  bigger:function(){C.S(1.3,1.3);C.D(i,0,0,i.w,i.h)}})})
+                                            can.drawImage(ii, 0,0)
+
+
+                                             mixin buts(['flipY','flipX', 'rotateC', 'rotateCC', 'moveLeft', 'moveRight', 'moveUp', 'moveDown', 'bigger', 'smaller'])
+                                                            mixin buts(['grayscale','pixelate'], 1)
+
+          mixin buts(['flipY','flipX', 'rotateC', 'rotateCC', 'moveLeft', 'moveRight', 'moveUp', 'moveDown', 'bigger', 'smaller'])
+                        .col-md-1: h4 pixelize
+                            mixin buts(['grayscale','pixelate'])

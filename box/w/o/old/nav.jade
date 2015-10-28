@@ -1,0 +1,69 @@
+
+mixin logStatus
+    if (U)
+        span logged in as "#{u}"
+    else
+        span not logged in
+mixin logControls
+    if (u)
+        a.btn-mini(href="/logout") logout
+        span ---
+    else
+        button.btn-mini(href="/users/new") new
+        button.btn-mini(href="/login") log in
+        span ---
+
+mixin navItems
+    if (nav)
+        each value, key in nav
+            a.btn.btn-success.btn-large(href="#{value}") #{key}
+mixin header
+    h6.well
+//span |*|*|*| &nbsp   #{cP} &nbsp   |*|*|*|    &nbsp &nbsp &nbsp &nbsp &nbsp
+//span <- #{lP} &nbsp &nbsp &nbsp &nbsp &nbsp
+        mixin logStatus
+        mixin navItems
+        .pull-right
+            span ---
+            mixin logControls
+
+
+
+mixin bs-navbar-fixed-top(brandlink,links)
+    .navbar.navbar-inverse.navbar-fixed-top
+        .navbar-inner
+            .container
+                button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.brand(href='#{brandlink.url}') #{brandlink.name}
+                .nav-collapse.collapse
+                    ul.nav
+                        each link in links
+                            li.active
+                                a(href='#{link.url}') #{link.name}
+mixin private-nav
+    if (u)
+        each value, key in nav-private
+            li: a(href="#{value}") #{key}
+    else
+        li cant view some
+        .hero-unit Hi, #{u.username}. Upload a Pic !
+            form.well(action="/upload/pic", method="post", enctype="multipart/form-data")
+                input(type="file", name="mug")
+                input(type='submit', value='submit')
+//  div.alert-info
+              p.alert here are two landing pages.. which do you prefer?
+              mixin dating('penis-head-dating','gay dating', 'homo')
+              mixin dating('TimParsons.com','being cheap, fat, and lazy', 'Chris Morgan')
+
+
+
+
+
+//if(!hideHeader==true)mixin flash mixin header
+//form.navbar-form.navbar-right(role="search")
+//    .form-group
+//        input.form-control(type="text", placeholder="Search")
+//    button.btn.btn-default(type="submit") Submit

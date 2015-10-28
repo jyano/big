@@ -1,0 +1,24 @@
+
+
+{
+  "name": "wappy",  "version": "0.0.1",
+
+  "private": true, "scripts": {"start": "node app.js"},
+
+  "dependencies":{
+
+                "connect":"*", "express": "*","jade": "*",
+
+      "mongoose": "*",
+
+      "socket.io":"*",
+
+                "connect-flash":"*", "connect-mongo":"*", "session.socket.io":"*" ,
+
+                "expect.js":"*", "chai": "*", "mocha": "*", "sinon": "*",
+
+                "superagent": "*"
+  }
+
+
+}

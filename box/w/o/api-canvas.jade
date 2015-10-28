@@ -1,0 +1,24 @@
+h1  mixin ctx =    width(960),   height(450),  ctxName('ctx'),   backgroundColor(null)
+
+h2 simply makes the canvas element and then calls CTX(passing in the class name)
+
+h4 notes
+p id = ctx,  class = ctx and canvas
+p  i switched to from id b/c of jquery mouse-event error, that was probably nothing
+
+
+
+
+h1 CTC
+h3 first it calls: getCtx = ctx ->  finds canvas el by class, returns its context
+h3 then it runs it through miniCTx, which gives it abbreviated pops and new functionality
+h3  c:canvas, w:c.width, h:,c.height,
+h3 l:leftOffset, t:topOffset, T/ranslate, R/otate, S/scale, D/rawImage, C/reateImageData, g/etImageData, p/utImageData
+h3   mx=  x ->  return parseInt(x - this.l)};
+h3   my= y->    return parseInt(y - this.t + pageYOffset
+
+
+h1 finally,... CTX =
+h1 ctxName ->  window[ctxName] = miniCtx(  getCtx(  ctxName  ))}
+h2 end result:  by using the ctx jade mixin, you get a canvas that has that id (and that class + class 'canvas')
+h2 with its context auto-assigned to a global var, also by same name! (plus the other goodies)

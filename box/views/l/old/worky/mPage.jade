@@ -1,0 +1,41 @@
+extends l/ly
+block C
+    .col-md-2
+    .col-md-8.text-center
+        h4
+            a(href='/ranky') ranky&nbsp
+        form(method=false, action=false)
+            label(for='mit')
+                a(href='/ranky')
+            input#mit(name = 'topic', type = 'text')
+            button#sub(type = 'submit') ;)
+        br
+        .well
+            h2
+                span topic:
+                a(href='/ranky/#{topic.name}')  "#{topic.name}"
+            h3
+                span message :
+                //a(href='/ranky/#{topic.name}/#{message._id}')
+                span &nbsp "#{message.value}"
+
+
+            form.h3(method='post', action='/ranky/response/po')
+                //label(for='topic') new &nbsp
+                input(name = 'response', type = 'text')
+                input(name = 'topic', type = 'hidden', value='#{topic.name}')
+                input(name = 'msgId', type = 'hidden', value='#{message._id}')
+                button(type = 'submit') :-)
+
+
+
+
+
+
+            //h3 messages:
+            //if (topic == 'nada')// p there are no messages
+            each response in message.responses
+                p #{response.value} (#{response.score}) &nbsp
+                    span.glyphicon.glyphicon-arrow-up.up &nbsp
+                    span.glyphicon.glyphicon-arrow-down.down &nbsp
+    .col-md-2

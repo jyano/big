@@ -1,0 +1,45 @@
+extends ../../layout
+
+block content
+
+    .jumbotron
+
+        h1 TEST
+        h1 this recieves ALL data ONLY from 'MW' - it's handler just renders the view and nothing else!
+
+        //h1 #{U.username}
+
+        if U
+            p #{U}
+            p that's how objects are rendered in jade.  here is another
+            p #{ss}
+            p #{JSON.stringify(ss)}
+            p user is logged in and his username is: #{u}
+            p mongo objects are apparently stringifed as json, but q.s was not so i used JSON.stringify
+            p (which I can do in node OR in Jade) :)
+            p here is his other info:
+            p #{U.password}
+            p #{i}
+
+        else
+            p user is a guest
+
+        p so i get this all for free by just including 'MW' in my routes
+        p and this means that all the browser asset calls won't go through any of this crap :)
+
+
+        if M
+            h6 #{M}
+            h5 #{mid}
+            h4 #{m}
+            img(src="#{mp}")
+            p #{JSON.stringify(mp)} is 'mp'
+            p #{U.mugPath} is 'U.mugPath'
+        p  so it works!
+        p if you run into problems, just remember that after a call to mongo, if there is a call to n(), OUTSIDE of the call back
+        p it will execute before mongo returns its data..
+        h1 sooooo we have:
+        h2 U = user, u = user.username, i = user._id,
+        h2 M = muggy image Obj, mp = muggy image relPath, which can be used as an img src  , mid for muggy image _id
+        h3 ss = session
+        h2 want more?  just ask!

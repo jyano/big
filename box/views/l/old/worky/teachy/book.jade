@@ -1,0 +1,37 @@
+extends ../../layout
+block content
+
+    .col-md-3: h4.well
+
+        // book list
+        a(href='/teachy') t e a c h y
+        p.lead books
+        each book in books
+            p: a(href='/teachy/' + book.title) #{book.title}
+
+
+    //                            MAIN DIV
+    .col-md-6
+        h1 #{book.title}
+
+
+        .well: h3
+            h2 &nbsp Contents: (pages)
+
+                form.text-center(method=false, action=false)
+                    input#mit.input-small(name = 'page', type = 'text',placeholder='new page')
+                    button.btn.btn-success#sub(type = 'submit') +
+                br
+                each page in book.pages
+                    form(method='POST', action = '/teachy/page/del')
+                        input(type='hidden', name='bookTitle', value=book.title)
+                        input(type='hidden', name='pageName', value=page.name)
+                        button(type = 'submit') x
+                        a(href='/teachy/' + book.title + '/' + page.name) &nbsp #{page.name}
+                    br
+    .col-md-3
+        // json object
+        //h6.well: span #{book.title}
+        p.lead json object
+        each page in book.pages
+            p #{page}

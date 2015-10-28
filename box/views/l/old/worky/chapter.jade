@@ -1,0 +1,57 @@
+extends ../l/ly
+
+    // PAGE HEADER ( 'book' - BOOK - CHAPTER )
+    .row
+        .col-md-12
+            h1.well
+                a(href='/worky') books
+                a(href='/worky/'+b.t) &nbsp - &nbsp #{b.t}
+                span &nbsp - &nbsp  #{c.n}
+    // LEFT SIDEBAR(CHAPTERS)
+    .row
+        .col-md-2
+            .well
+                h4 chapters:
+                each c in b.c
+                    h4: a(href='/worky/'+c.n) #{c.n}
+        // MAIN DIV /////////////////////////////////////////
+        ////         TOP FORM (NEW PAGE)
+        .col-md-10
+            .row: h2
+                form(method='POST',action='/newPage')
+                    span &nbsp new page:  &nbsp
+                    input.input-small.text-center(name='h',type='text',placeholder='heading',autofocus)
+                    //input.text-center(name = 'content', type = 'text',placeholder='content')
+                    +hin('bookId',b._id)
+                    +hin('chapterId',c._id)
+                    input.input-small.text-center(name='v',type='text',placeholder='content')
+                    button(type='submit') &nbsp + &nbsp
+                br
+
+            //////// MAIN INDEX ( LIST OF PAGES (IN CHAPTER) )
+            .row
+                .col-md-4
+                    each p in c.p
+                        .sort
+                            h4.row.col-md-12
+                                //////////// DELETE BUTTON
+                                a.badge(href='/worky/del/#{book._id}/#{c.n}/#{p.h}') x
+                                ///////////////// HEADING/LINK OF PAGE
+                                a(href='/worky/'+b.t+'/'+c.n+'/'+p.h)
+                                    span.sorty #{p.h}
+                                ///////////////////////////    CANCEL BUTTON
+                                //span.pull-right &nbsp &nbsp
+                                //button.btn.btn-warning.pull-right: span cancel
+                                ///////////////////////////     SAVE INPUT
+                                //span.pull-right &nbsp
+                                //input.btn.btn-primary(type='submit', value='save').pull-right
+                            form.text-center(action='/worky/updatePage',method='POST')
+                                .row
+                                    .col-md-9.text-center
+                                        +hin('bookId',    b._id)
+                                        +hin('chapterId', c._id)
+                                        +hin('pageId',    p._id)
+                                        textarea.texty(name='content',rows='2',cols='25') #{p.v}
+                                    .col-md-2
+                                        input(type='submit',value='save')
+                                        button dont

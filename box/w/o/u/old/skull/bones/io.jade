@@ -1,0 +1,35 @@
+
+mixin flash
+    h3.alert-error
+        if messages
+            each msg in messages
+                p &nbsp  #{msg}
+
+mixin popbox
+    #popbox.modal.hide.fade.in(style='display: none;')
+        #poptop.modal-header
+            a.close(data-dismiss='modal') ×
+            h3 Godzilla Game
+            h5 Popbox Message #354b
+        #popbot.modal-body
+            h1 Results: Fail
+            h2 Lasted: 38 seconds
+            h2 Earned: 44 hero points
+        .modal-footer
+            a#popbut.btn.btn-success(href='#') Play again
+            a.btn(href='#', data-dismiss='modal') Close
+                // p/ a.btn.btn-primary.btn-large(data-toggle='modal', href='#popbox') make godzilla kill the other guys
+
+
+mixin notice(env)
+    div.well
+        h1 notice:
+        p #{env.notice}
+
+
+mixin chatter
+    div#chat
+    hr
+    input#mit
+    button#sub
+

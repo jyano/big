@@ -1,0 +1,51 @@
+extend ../layout
+block content
+
+
+    +s(['canvas'])
+
+    script.
+        var src = '/#{imgP}';
+    br
+    br
+    br
+    br
+    .row
+        .col-md-7
+            h4 cutty
+            h5 #{imgP}
+
+
+
+            mixin ctx('ctx',650,650,'pink')
+            mixin ctx('clr',50,50,'yellow')
+            mixin ctx('cut',50,50,'blue')
+            script.
+                src = pathToSrc(src);
+                imgCan(ctx, src);
+                vertex();
+                $(ctx.canvas).click(function(e){addVertex(ctx,  ctx.mx(e.clientX), ctx.my(e.clientY))})
+
+
+
+
+
+
+        .col-md-4
+            br
+            h3 make a cut-out!
+            div
+                .btn-group.btn-group-vertical
+                    button.btn.btn-success.btn-lg(type='button') clear
+                    button.btn.btn-warning.btn-lg(type='button') add
+                    button.btn.btn-danger.btn-lg(type='button') subtract
+                    button.btn.btn-info.btn-lg(type='button') submit
+                br
+                br
+                .well
+                    p how's it lookin?
+
+
+
+//$('#flipY').click(flipY) ;    $('#flipY').click(cb);});
+//img(src = '/#{imagePath}', height=700, width=700)//if imagePath passed (via URL <- a:'edit'), then show da pic really big!!  //far right column:

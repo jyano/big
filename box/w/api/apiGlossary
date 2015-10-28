@@ -1,0 +1,356 @@
+*** API ***
+-a------------------------------------------------------
+A(?)bool:array?
+//chomping
+A(a,b):chompLeft(remove @b from beginning of @a)
+    A('ab','a')->  ab, a ->  'b'
+    A('ab','b')->  ab, b ->  'ab'
+    A('a','a') ->  a,  a ->  ''
+    A('a','b') ->  a,  b ->  'b'
+_a()q:anchor -> $('<a>')
+_a(f) -> a.apply(c||a,b)
+_(F)a.animate(...)
+-b------------------------------------------------------
+B(a)   _.isBoolean(a)}
+B(a,b) (a).chompRight(b)
+_b()q:body
+_b(f) bind
+_b(F) bindAll
+-c------------------------------------------------------
+C (f.x->f.x)
+C(o.canvas) o.canvas
+C(o.CANVAS) if _g(a) has 'Canvas', return it
+_C(a)   compact
+_C(a,b) connect
+_c(N) ceil:clearInterval
+_c()q:canvas
+_c(a.)[a] concat
+_c(A.) A  concat
+_c(O) children
+cL(Q)a
+cL(q)_S(a)
+-d--------------------------------------------------------
+D()bool: defined
+D(.) defaults(args)
+df {a=ob(a)  <- g.p? D(a, oO(b||''+'D')):D(a)?a:b}
+_d()q:div
+_d(o)o.data
+_D() $(document)
+Du _h(a,'data:')
+-e------------------------------------------------------
+//// E
+.s  endsWith
+o.e o.e
+o o
+Of every  every(O,f,.)
+/if _g(a),return it
+///
+///  _e
+()q:li
+(.)empty:
+(f. -> O(p))
+(ss)ends with
+(.s) _e(a, (v,k){eval(q)}, b)}
+/each
+///
+-f---------
+_F flatten
+F(..)filter:
+F(f)f.prototype||true
+_f()q:form
+_f(f )  find
+_f(n ) floor
+_f/ first
+-g---------
+_g//g$=(.b) _g(a,b):
+_g(O)O:
+_g(o.target)  o.target:
+_g(/)$(a)[0]:
+
+G(a)
+    if(_.isArguments(a)){
+    a=_.toArray(a)
+    if(_l(a)==='+'){p=a.pop()}
+    if(_l(a)==='-'){n=a.pop()}
+    return D(a, {
+    z: a.length, f:_f(a), l:_l(a), r:_r(a), i:_i(a),
+    p:p, P:!p, e:E(_f(a)), _g:_g(_f(a)), n:n, N:!n
+
+
+-h---------
+H=(a){return $(a||$w).outerHeight()}
+bH= h(a,b){
+if(b==='a'){return screen.availHeight}
+if(b==='s'){return screen.height}
+if(b==='i'){return $(a||$w).innerHeight()}
+if(N(a)){return (n){return n* w()/a}}
+return $(a||$w).outerHeight()}
+hI=(a){var g=G(arguments);
+    if(g.n){return $(a).innerHeight()};
+    return $(a).get(0).innerHeight}
+hA=(a){return a.availHeight}
+
+///////_h
+    var c=(a,b,c){return a.contains(b,c)},
+
+    h= h(a){return a?a[h()]:'height'}
+
+    return (O(a)&&F(h(a)))?
+    (U(b)?h(a):N(b)?h(a)(b):a)
+    :U(b)?(D( h(a))?h(a):a.h)
+    :N(b)?_s(a, h(a), b)
+    :A(a)?c(_,a,b)
+    :O(b)?_h( _S( b ), a)
+    :S(a)?c(s$(a),b)
+    :O(a)? a.has(b) :0}
+
+-i---------
+I(.n) setInterval
+I( _h('Image', E(a)))   E(a):
+_i()q:input
+_(A) initial
+_(/) parseInt
+_I(/) new Image():
+_I(./) invert:
+_(/) intersection(g):
+is{b<-b===a}:
+-j---------
+J(s) getJSON
+J(/) stringify
+_j (a||[]).join(b||' '):
+-k----------------
+K(n ) I(b, a*1000)
+K(.n) I(a, b)
+K(/) keys:
+_k a.complete:
+
+-l-----------------
+
+L(.b)    isLower
+L(.s)    ensureLeft
+L(/)     toLowerCase
+_l()     q:label
+_l(.f)   load
+_l(/)    last
+
+-m---------
+
+_m(.f) map
+_m(a)  min
+_m(n) { z <- z*a }
+_M max
+
+-n---------
+
+N   bool:number
+Nn  bool: NaN
+nN  $B($N(w)):
+_n()q: button
+
+-o------------
+
+O(?.) ?object:
+O(o)  extend*
+O(+)  or{}
+O(/)  clone:
+_o()  q:option
+_o(e) outer HTML:
+
+
+
+
+oo (o){return _.defaults(o, ooo)}
+
+
+Oo  =oo(function f(a,b){return f[a] && f[a][b]})
+
+oO  =oo(
+
+function oO(a,b,c){
+    if(U(a)){ return _.keys(f) }
+    if('*'==b ){return $r(a)}
+    if(!U(c)){var o=oO(c,a)
+        return oO(o,b)}
+    if(!U(b)){if(oO[a] && oO[a][b]) {return oO[a][b]}
+        return b}
+    var o=function(x,y){return oO(a,x,y)}
+    return _.defaults(o, oO[a] || {} )}
+
+    )
+
+
+$o   a,b,c
+
+    var g=G(arguments)
+    if(U(b)){return _p(o,a)}
+    return g.n? Oo(a,b,c)
+        :oO(a,b,c)}
+
+
+
+-p---------------
+
+_p()q:p
+_p(..0) {c,d<- a(c,b,d)}
+_p(f*) partial(g)
+_p(o(g.n)) parent
+_p(o(g.N)) parents
+_p(.s) S(a,b)?a:b+a ::
+_p(nN*)nN+'px':
+_p(/)/:
+
+-q------------
+
+_q()Q:OL
+Q(o[name=q])o.q
+Q(E(.)) Q(E(.)):
+
+-r------------
+
+R(ss) ensureRight
+R(/) range
+_r()q:br
+_r(.f.)  reduce
+_r(f..)  reduceRight(a, c, b)
+_r(ff)   _r(c,a,b)
+_r(n)    random
+_r(s)    replace(b||'#', c||'')
+_r(/)    rest
+
+
+rc= r(f,a){  //****
+            if(U(a)&&N(f)){return r((a){return f*100}) }
+            if(U(a)){return _p(r, f)}
+            return _m(a,(a){
+            if(A(a)){return r(f,a)}
+            return f(a)})
+
+
+            //rcMini= r(f,a){return U(a)?_p(r,f):_m(a,(a){return A(a)?r(f,a):f(a)})}
+            //test later.. its sugar
+
+
+
+-s---------
+
+_s= s(a, b,c){
+            if(D(b)){a[b]=c;return a}
+            if(U(a)){return $('<span>')}
+    if(N(a)){var q=s()
+    _t(a? a-1 : 0, (){  q=q.add(s())  })
+    return q }
+
+src= f(e){//s/c/C/i/b->s sync
+        var _src=(a){return _p(_x(a),'/') }
+        if(Q(e)){e=$(e)[0]}
+        if(e.image){e=e.image}
+        if(e.canvas){ e=e.canvas }
+        if(e.src){e=e.src}
+        if(e.toDataURL){e=tDU(e)}
+        return Du(e)? e
+            :S(e)?
+            _src(e)
+            :0
+        // e=e||'guy'
+        // if(I(e)){e=e.src}
+        // if(C(e)){e=tDU(e)}
+    }//You can check the complete property of the image.
+
+    return src(a)
+}
+
+S(?/)     isString
+S(.s)     startsWith
+S(/)      some
+_S(..)    split(||'')
+_S(E(.))  _o(.):
+_S(/)     toString
+-t------------------------
+T   setTimeout
+_t()q:table
+_t(f) _t(1,a)
+_t(n) times
+_t(N.) text
+_t(s) _t(_b(), a)
+_t/text:
+_ta()q:textarea
+tA if O(a), toArray(a). else, [a]:
+tT a:_b().prepend(a)
+tB=(a){_b().append(a);return a}
+tU/tDU toDataURL:
+-u-------------------------
+U(.|) bool:undefined
+U(o)? extend *
+U(/) toUpperCase
+_u()q:ul
+-v----------------------
+V  values
+_v F(a.value)? a.value():a.value::
+-w----------------------
+
+
+
+
+W $(a||$w).outerWidth:
+//_w  var w= w(a){return a?a[w()]:'width'}
+
+F( w(a) )?( U(b)?w(a) :N(b)? w(a)(b): a):
+U(a)? $($w)
+N(b)? _s(a,w(),b)
+D(w(a))?w(a)
+a.w:
+
+bW  var bw=(){ return W(qW)},   B=is(b)
+
+                            return  B('a')?  wd.a(scr)
+                            :B('s')?  _w(scr)
+                            :B('i')?  wd.i(qW)
+                            :N(a)?    mlt(bW()/a)
+                            :         bw()}
+
+
+wI=(a){var g=G(arguments);
+                            if(g.n){return $(a).innerWidth()};
+                            return $(a).get(0).innerWidth}
+                            wA=(a){return a.availWidth}
+
+
+
+
+
+
+
+
+
+-x----------------------
+_x(s) (_h(a,'.'))?a  : R(a,b||'.png')
+X= x(c){if(O(c)){
+if(c.canvas){return c}
+if(C(c)){return C(c).getContext('2d')}
+if(c.x){return x(c.x)}
+if(c.q){return x(c.q)}
+-y----------------------
+_y()q:select
+-z----------------------
+_z()q:iframe
+_z(.) size
+_z(.n) _z(a)==b
+_z/_z(a)==_z(b)}
+Z zip:
+z empty(||body):
+------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

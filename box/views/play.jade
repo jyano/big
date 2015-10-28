@@ -1,0 +1,102 @@
+include l/u
+include l/m
+
+
+!!! 5
+html(lang="en")
+
+    head
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+        script.
+
+          _app = wappyApp = '#{app}'
+
+          _pam = wappyPam = '#{pam}'
+
+        +css('bs')
+
+        +css('themes')
+
+        //deps
+        +S(["us","jq","bs","cjs","string","bx"])
+
+
+        //html/base
+        +S([ 'spriteSheets', 'objects',  'core', 'mobile'  ])
+        +S([ 'jqueryplugins',  'event', 'html', 'boot','ui' ,'sys',  'images',   'can'  ])
+
+
+        //easel
+        +S([ 'easel', 'displayObject', 'stage',  'shape', 'text'])
+        +S([ 'bitmap','sprites', 'tween'   ])
+        +S([ 'filt', 'draw', 'animate', 'solve','playgame'  ])
+
+        +S(['preBox'])
+        
+        //box2d
+
+        +S([ 'b2dbasics', 'vecs', 'mousey'])
+        
+        
+        +S(['shapes',  'fixtShapes', 'fixDef', 'fixtures', 'bodDef', 'bodies','bodFixts', 'boxWorld','debug', 'worlds', 'entities'])
+        
+        
+        
+        
+        +S([  'contact', 'contactList','handling',  'filtering','flag', 'preSolve', 'postSolve' ,'collide','manifold' ])
+
+
+        +S(['makeworld', 'worldCreate' ])
+        
+        
+        
+        +S([  'boxRev','weld'])
+        
+        //joints
+        +S([ 'prism', 'gamey' ,'jointDef','joints','wheel'])
+        +S(['dist', 'rev','gear', 'alert','stab'  ])
+        
+        //arcade
+        +S([   'play',   'klass' ])
+        +S([ 'mario', 'walking', 'kill'  ])
+        
+        //spiz
+        +S([ 'spiz',  'webman', 'webTimeGun', 'spoom','pinball', 'examples','movieClip'])
+        
+        //games
+        +S(['spaz', 'cars',  'yip','coinWarp' ])
+        
+        
+        +S(['scrollX','scrollXY','scaleScroll','autoScroll'])
+        //cont
+        +S(['cont', 'bindCo', 'accel', 'grav', 'buoy', 'tens','foCo','edgePairs'])
+        +S([   ])
+        
+        body
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

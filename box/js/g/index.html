@@ -1,0 +1,234 @@
+<head>
+
+<link rel="stylesheet" href="/bootstrap.css">
+<link rel="stylesheet" href="/bootstrap-themes.css">
+<script src="/jq.js"></script>
+<script src="/bs.js"></script>
+<script src="/us.js"></script>
+<script src="/bb.js"></script>
+<script src="/bbmn.js"></script>
+
+</head>
+
+
+
+<body>
+
+
+
+<div id="navigation" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Books Online</a>
+        </div>
+        <div class="collapse navbar-collapse ">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Catalog</a></li>
+                <li><a href="#history/orders">Order History</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<br><br><br><br>
+<hr>
+
+<div id="main" class="container">
+
+    <div id="application"><p>app</p></div>
+
+</div>
+
+<footer><hr></footer>
+
+
+
+
+
+<script id="CatalogLayout" type="text/template">
+    <div class="container">
+
+    <div id="Cart" class="row">
+
+        <div id="categories" class="col-sm-2"><p>Im the Categories Region<p></div>
+
+        <div class="col-sm-6">
+            <div id="products" class="row"><p>Im the products list Region<p></div>
+            <div id="book" class="row"><p>Im the book description Region<p></div>
+        </div>
+
+        <div id="order" class="col-sm-4"><p>Im the Order Region<p></div>
+
+    </div>
+
+</div>
+</script>
+
+
+
+
+<script id="books-template" type="text/template">
+
+    <ul>
+        <% _.each(items,function(item){ %>
+
+        <li>
+            <a href= "book/<%= item.id %>"
+             > <%= item.name %>
+
+            </a>
+        </li>
+
+        <% }); %>
+
+    </ul>
+</script>
+
+
+
+<script type="text/html" id="sample-template">
+    <p>This is an ItemView<p>
+        <%= value1 %>
+        </br>
+        <%= value2 %>
+        </br>
+</script>
+
+
+
+<script>
+
+    BookStoreApp=new Backbone.Marionette.Application({})
+
+    BookStoreApp.addRegions({mainRegion: '#main'})
+
+
+    CatalogLayout=Backbone.Marionette.Layout.extend({
+
+        template: "#CatalogLayout",
+
+        regions:{
+            categories: '#categories',
+            products: '#products',
+            order: '#order',
+            book: '#book'}
+
+    })
+
+
+
+
+
+
+
+    BookStoreController=Backbone.Marionette.Controller.extend({
+
+        initialize: function(op){
+            this.region=op.region},
+
+        displayBooks: function(){
+            console.log("I will display books...");
+
+        }})
+
+
+
+
+    BookStoreRouter=Backbone.Marionette.AppRouter.extend({
+
+        controller: BookStoreController,
+        appRoutes: {"": "displayBooks"}
+
+    })
+
+
+
+
+    BookStoreApp.addInitializer(function(){
+
+        var controller=new BookStoreController({
+            region: BookStoreApp.mainRegion
+        })
+
+        layout=new CatalogLayout()
+
+        controller.region.show(layout)
+
+        var router=new BookStoreRouter({controller:controller})
+
+    })
+
+
+
+
+
+    BookStoreApp.on('initialize:after', function () {
+
+            Backbone.history.start()
+    })
+
+
+
+
+    BookModel=Backbone.Model.extend({
+
+        defaults:{
+            id:'1',
+            name:'First'
+        }})
+
+
+    BookCollection=Backbone.Collection.extend({model:BookModel})
+
+
+
+
+    bookModel=new BookModel()
+    bookModel2=new BookModel({id:'2',name:'second'})
+    bookModel3=new BookModel({id:'3',name:'third'})
+
+    bookCollection=new BookCollection()
+    bookCollection.add(bookModel)
+    bookCollection.add(bookModel2)
+    bookCollection.add(bookModel3)
+
+
+    BookListView=Marionette.ItemView.extend({
+        template: "#books-template"
+    })
+
+
+    draw=function(){
+
+        $("body").html(
+
+                _.template(
+                        $("#books-template").html(), {items:[{id:'1',name:'one'},{id:'2',name:'two'}]})
+        )}
+
+
+
+    view=new BookListView({
+
+        collection:bookCollection,
+
+        el:"#main"
+
+    })
+
+
+    view.render()
+
+
+    //BookStoreApp.start()
+
+
+</script>
+    
+
+</body>
+

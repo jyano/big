@@ -1,0 +1,279 @@
+mixin scope
+    mixin J("I = {}")
+
+mixin setSRC(src, img)
+    if src
+        if img
+            mixin SRC(img, src)
+        else
+            mixin SRC("I.image", src)
+    else
+        if i
+            mixin SRC(img, "I.source")
+        else
+            mixin SRC("I.image", "I.source")
+// add onLoad-cb to an image
+mixin handler(func, img)
+    script.
+        #{img}.addEventListener('load', #{func})
+mixin listen(func, img)
+    if img
+        if func
+            mixin handler(func, img)
+        else
+            mixin handler("function(){alert(1)}",  i)
+    else
+        if func
+            mixin handler(func, "I.image")
+        else
+            mixin handler("function(){alert(1)}", "I.image")
+mixin IMAGE(src, func)
+    mixin scope
+    mixin newImage
+    if func
+        mixin listen(func)
+    else
+        mixin listen
+    if src
+        mixin setSRC(src)
+mixin pic(func, src)
+    mixin scope
+    mixin newImage
+    mixin listen(func)
+    mixin setSRC(src)
+mixin picture(def, src)
+    mixin f(def, "tempFunc")
+    mixin pic("tempFunc", src)
+mixin art(src, func, nam)
+    mixin scope
+    mixin newImage
+    if func
+        mixin listen(func)
+    else
+        mixin listen
+    if src
+        mixin setSRC("/" + src)
+    mixin set(nam, "I.image", true)
+////
+mixin si(nam, func)
+    mixin scope
+    mixin newImage
+    if func
+        mixin listen(func)
+    if nam
+        mixin setSRC("/" +nam + ".png")
+    mixin set(nam, "I.image", true)
+mixin SI(n,f)
+    mixin si(n, f)
+// need to update this to allow it to accept blocks = will be best function ever!!!
+mixin ioCanOnlyBeUsedOnce(nam, func)
+    mixin scope
+    mixin newImage
+    if func
+        mixin listen(func)
+    if nam
+        mixin setSRC("/" +nam + ".png")
+    mixin set(nam, "I.image", true)
+mixin io(w, png, func)
+    mixin newImage(w)
+    mixin handler(func ,w)
+    mixin setImageSource(w , "/" + png + ".png")
+///////////////////////////////////////////////////////////// make html image elements
+mixin im(src, w, h, id)
+    - id = id || 'i'
+    - w = w || 200
+    - h = h|| 200
+    img(src = "#{src}", id = "#{id}", width="#{w}", height="#{h}")
+mixin imgE(src,w,h)
+    if h
+        img(src = '#{src}', height='#{h}', width='#{w}' )
+    else
+        if w
+            img(src = '#{src}', height='#{w}', width='#{w}' )
+    img(src = '#{src}')
+    img(src = '#{src}')
+
+
+mixin newImage(img)
+    if img
+        mixin J(img + "= new Image()")
+    else
+        mixin J( "I.image = new Image()" )
+
+mixin setImageSource(img, src)
+    mixin J(img + ".src='" + src + "'")
+
+mixin SRC(img, src)
+    mixin setImageSource(img, src)
+
+mixin setSRC(src, img)
+    if src
+        if img
+            mixin SRC(img, src)
+        else
+            mixin SRC("I.image", src)
+        script.
+            #{src}.w = #{src}.width
+    else
+        if i
+            mixin SRC(img, "I.source")
+        else
+            mixin SRC("I.image", "I.source")
+
+// add onLoad-cb to an image
+mixin handler(func, img)
+    script.
+        #{img}.addEventListener('load', #{func})
+
+mixin listen(func, img)
+    if img
+        if func
+            mixin handler(func, img)
+        else
+            mixin handler("function(){alert(1)}",  i)
+    else
+        if func
+            mixin handler(func, "I.image")
+        else
+            mixin handler("function(){alert(1)}", "I.image")
+
+mixin IMAGE(src, func)
+    mixin scope
+    mixin newImage
+    if func
+        mixin listen(func)
+    else
+        mixin listen
+    if src
+        mixin setSRC(src)
+
+
+
+mixin pic(func, src)
+    mixin scope
+    mixin newImage
+    mixin listen(func)
+    mixin setSRC(src)
+    mixin picture(def, src)
+    mixin f(def, "tempFunc")
+    mixin pic("tempFunc", src)
+
+
+
+
+mixin art(src, func, nam)
+    mixin scope
+    mixin newImage
+    if func
+        mixin listen(func)
+    else
+        mixin listen
+    if src
+        mixin setSRC("/" + src)
+    mixin set(nam, "I.image", true)
+
+
+////
+mixin si(nam, func)
+    mixin scope
+    mixin newImage
+    if func
+        mixin listen(func)
+    if nam
+        mixin setSRC("/" +nam + ".png")
+    mixin set(nam, "I.image", true)
+
+mixin SI(n,f)
+    mixin si(n, f)
+
+// need to update this to allow it to accept blocks = will be best function ever!!!
+mixin ioCanOnlyBeUsedOnce(nam, func)
+    mixin scope
+    mixin newImage
+    if func
+        mixin listen(func)
+    if nam
+        mixin setSRC("/" +nam + ".png")
+    mixin set(nam, "I.image", true)
+
+mixin io(w, png, func)
+    mixin newImage(w)
+    mixin handler(func ,w)
+    mixin setImageSource(w , "/" + png + ".png")
+
+///////////////////////////////////////////////////////////// make html image elements
+mixin im(src, w, h, id)
+    - id = id || 'i'
+    - w = w || 200
+    - h = h|| 200
+    img(src = "#{src}", id = "#{id}", width="#{w}", height="#{h}")
+
+
+mixin imgE(src,w,h)
+    if h
+        img(src = '#{src}', height='#{h}', width='#{w}' )
+    else
+        if w
+            img(src = '#{src}', height='#{w}', width='#{w}' )
+    img(src = '#{src}')
+    img(src = '#{src}')
+
+
+
+
+
+// game controller
+mixin UDLR
+    button#up.btn.btn-primary up
+    button#down.btn.btn-primary down
+    button#left.btn.btn-primary left
+    button#right.btn.btn-primary right
+
+mixin bigBlueCanvas
+    mixin ctx("b", 500, 500, "blue")
+
+
+mixin bigCanvas(color, id)
+    - id = id || 'o'
+    - color = color || 'blue'
+    mixin ctx(id, 500, 500, color)
+
+mixin color(c, w,h,id)
+    - id = id || c || 'color'
+    - color = c || 'cyan'
+    - w = w || 500
+    - h = h || 500
+    mixin ctx(id, w, h, color)
+
+
+mixin draw(funcName, image, ctx, x,y,w, h)
+    - x = x || 0
+    - y = y || 0
+    - w = w || 500
+    - h = h || 500
+    mixin f(ctx +".drawImage(" + image + "," + x + "," + y + "," + w + "," + h + ")",   funcName)
+
+
+mixin image(image)
+    script.
+        IMAGE('#{image}')
+mixin loadImages(images)
+    each image in images
+        mixin image(image)
+
+mixin graphics-images(i)
+    mixin image("chicks")
+    mixin image("me")
+    mixin image("guy")
+    script.
+        ea([chicks, me, guy], function(i){i.h = i.height;i.w = i.width  })
+
+mixin graphics-scripts
+    +s(['modules/canvas'])
+    +s(['modules/create'])
+
+mixin graphics
+    mixin graphics-scripts
+    mixin graphics-images(300)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

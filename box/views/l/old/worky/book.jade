@@ -1,0 +1,51 @@
+extends ../l/ly
+mixin hin(n,v)
+    input(type='hidden',name='#{n}',value='#{v}')
+block C
+
+
+    .row
+        .col-md-12
+            h1.well
+                a(href='/worky') books
+                span &nbsp - &nbsp #{b.t}
+    .row
+        .col-md-2
+            .well
+                h4 books:
+                each b in B
+                    h4: a(href='/worky/'+b.t) #{b.t}
+        .col-md-7
+            form.h2.sort.text-center(method='post',action='/newChapter')
+                +hin('t',b.t)
+                span new chapter:
+                input.input-small.text-center(autofocus,name='n',type='text',placeholder='...')
+                button(type='submit')
+
+
+
+
+            h1 chapters:
+
+
+
+            each c in b.c
+                h2
+                    form(method='POST',action='delChapter')
+                        +hin('t',b.t)
+                        +hin('n',c.n)
+                        button(type='submit') x
+                        a(href='/worky/'+b.t+'/'+c.n) &nbsp #{c.n}
+
+
+
+
+                each p in c.p
+                    h4
+                        form(method='POST',action='/worky/page/del')
+                            +hin('h',p.h)
+                            +hin('n',c.n)
+                            +hin('t',b.t)
+                            &nbsp &nbsp &nbsp &nbsp &nbsp
+                            button(type='submit') x
+                            a(href='/worky/'+b.t+'/'+c.n+'/'+p.h) &nbsp #{p.h}
